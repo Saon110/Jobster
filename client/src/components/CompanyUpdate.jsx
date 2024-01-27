@@ -11,6 +11,7 @@ const CompanyUpdate = (props) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [website, setWebsite] = useState("");
+  const[email,setEmail] = useState("");
   
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +20,7 @@ const CompanyUpdate = (props) => {
       setName(response.data.data.company.name);
       setAddress(response.data.data.company.address);
       setWebsite(response.data.data.company.website);
+      setEmail(response.data.data.company.email);
     }
     fetchData();
   }, [companyId])
@@ -28,7 +30,8 @@ const CompanyUpdate = (props) => {
     const updatedCompany = await CompanyFinder.put(`/${companyId}`, {
       name,
       address,
-      website
+      website,
+      email
     });
 
     console.log(updatedCompany);
@@ -48,8 +51,12 @@ const CompanyUpdate = (props) => {
           <input value={address} onChange={e => setAddress(e.target.value)} id="address" className="form-control" type="text" />
         </div>
         <div className="form-group">
-          <label htmlFor="website">URL</label>
+          <label htmlFor="website">Website</label>
           <input value={website} onChange={e => setWebsite(e.target.value)} id="website" className="form-control" type="text" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="website">Email</label>
+          <input value={email} onChange={e => setEmail(e.target.value)} id="email" className="form-control" type="text" />
         </div>
         <button onClick ={(e) => handleSubmit(e)} type="submit" className="btn btn-primary">Submit</button>
       </form>

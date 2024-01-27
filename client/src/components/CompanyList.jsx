@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import CompnayFinder from '../apis/CompanyFinder';
 import { CompanyContext } from '../context/CompanyContext';
 import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom' ;
 
 const CompanyList = (props) => {
 
@@ -41,6 +42,7 @@ const CompanyList = (props) => {
             console.log(err);
         }
     };
+   
 
     
     const handleUpdate = (id) => {
@@ -55,6 +57,9 @@ const CompanyList = (props) => {
                         <th scope="col">Company</th>
                         <th scope="col">Address</th>
                         <th scope="col">Website</th>
+                        <th scope="col">Email </th>
+                        <th scope="col">Total jobs </th>
+                        <th scope="col">Total employees </th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -64,9 +69,13 @@ const CompanyList = (props) => {
                     {company.map((comp, index) => {
                         return (
                             <tr key={index}>
-                                <td>{comp.name}</td>
+                                {/* <td>{comp.name}</td> */}
+                                <td><Link to={`/company/${comp.company_id}`} >{comp.name}</Link></td>
                                 <td>{comp.address}</td>
                                 <td>{comp.website}</td>
+                                <td>{comp.email}</td>
+                                <td>{comp.total_jobs}</td>
+                                <td>{comp.total_employees}</td>
                                 <td><button onClick={()=> handleUpdate(comp.company_id)} className="btn btn-warning">Update</button></td>
                                 <td><button onClick={() => handleDelete(comp.company_id)} className="btn btn-danger">Delete</button></td>
                             </tr>

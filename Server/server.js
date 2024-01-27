@@ -18,10 +18,34 @@ app.listen(port, () => {
 app.use(cors());
 app.use(express.json());
 
+// app.get('/api/v1/Company', async (req, res) => {
+
+//     try {
+//         const results = await db.query("SELECT * FROM company");
+   
+//         console.log(results);
+//         res.status(200).json({
+//             status: "success",
+//             results: results.rows.length,
+//             data: {
+//                 companies: results.rows
+//             }
+
+//         });
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// });
+
+
+
+// advance query finding total_jobs and employee along with employee name
 app.get('/api/v1/Company', async (req, res) => {
 
     try {
-        const results = await db.query("SELECT * FROM company");
+        const results = await db.query("SELECT c.*, COUNT(DISTINCT j.job_id) AS total_jobs, COUNT(DISTINCT e.employee_id) AS total_employees FROM company c LEFT JOIN jobs j ON c.company_id = j.company_id LEFT JOIN employee e ON j.job_id = e.job_id GROUP BY c.company_id;");
+   
         console.log(results);
         res.status(200).json({
             status: "success",
@@ -36,6 +60,9 @@ app.get('/api/v1/Company', async (req, res) => {
         console.log(err);
     }
 });
+
+
+
 
 // get a single company
 app.get('/api/v1/Company/:id', async(req, res) => {
@@ -62,7 +89,7 @@ app.post('/api/v1/Company', async(req, res) => {
     console.log(req.body);
 
     try{
-        const results = await db.query("INSERT INTO company (company_id,name,address,website) values ($1,$2,$3,$4) returning *", [req.body.ID, req.body.Name, req.body.Location, req.body.URL]);
+        const results = await db.query("INSERT INTO company (name,address,website,email) values ($1,$2,$3,$4) returning *", [req.body.name, req.body.address, req.body.website,req.body.email]);
         console.log(results);
         res.status(201).json({
             status: "success",
@@ -86,7 +113,7 @@ app.put('/api/v1/Company/:id', async(req, res) => {
 
    
     try{
-        const results = await db.query("UPDATE company SET name = $1, address = $2, website = $3 where company_id = $4 returning *", [req.body.name, req.body.address, req.body.website, req.params.id]);
+        const results = await db.query("UPDATE company SET name = $1, address = $2, website = $3 ,email = $4 where company_id = $5 returning *", [req.body.name, req.body.address, req.body.website, req.body.email,req.params.id]);
         console.log(results);
         res.status(200).json({
             status: "success",
@@ -150,7 +177,7 @@ app.get('/api/v1/Company/:id/jobs', async(req, res) => {
     res.status(200).json({
         status: "success",
         data: {
-            jobs: results.rows
+            jobs : results.rows
         }
 
     });
@@ -176,3 +203,5 @@ app.delete('/api/v1/Company/:id/jobs/:job_id', (req, res) => {
         console.log(err);
     }
 });
+
+

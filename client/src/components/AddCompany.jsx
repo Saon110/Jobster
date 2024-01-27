@@ -6,19 +6,21 @@ import { CompanyContext } from '../context/CompanyContext';
 const AddCompany = () => {
 
     const { addCompany } = useContext(CompanyContext);
-    const [ID, setID] = useState("")
-    const [Name, setName] = useState("")
-    const [Location, setLocation] = useState("")
-    const [URL, setURL] = useState("")
+    const [company_id, setID] = useState("")
+    const [name, setName] = useState("")
+    const [address, setLocation] = useState("")
+    const [website, setURL] = useState("")
+    const [email,setEmail]  = useState ("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await CompnayFinder.post("/", {
-                ID,
-                Name,
-                Location,
-                URL
+               
+                name,
+                address,
+                website,
+                email
             });
             addCompany(response.data.data.company);
             console.log(response);
@@ -34,17 +36,18 @@ const AddCompany = () => {
         <div className="mb-4">
             <form action="">
                 <div className="form-row">
+                    
                     <div className="col">
-                        <input value={ID} onChange={e => setID(e.target.value)} type="number" className="form-control" placeholder="Company ID" />
+                        <input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="Company Name" />
                     </div>
                     <div className="col">
-                        <input value={Name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="Company Name" />
+                        <input value={address} onChange={e => setLocation(e.target.value)} type="text" className="form-control" placeholder="Company Address" />
                     </div>
                     <div className="col">
-                        <input value={Location} onChange={e => setLocation(e.target.value)} type="text" className="form-control" placeholder="Company Address" />
+                        <input value={website} onChange={e => setURL(e.target.value)} type="text" className="form-control" placeholder="Company website" />
                     </div>
                     <div className="col">
-                        <input value={URL} onChange={e => setURL(e.target.value)} type="text" className="form-control" placeholder="Company website" />
+                        <input value={email} onChange={e => setEmail(e.target.value)} type="text" className="form-control" placeholder="Company email" />
                     </div>
                     <button onClick={handleSubmit} type="submit" className="btn btn-primary">Add</button>
                 </div>
