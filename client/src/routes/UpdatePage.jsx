@@ -11,4 +11,4 @@ const UpdatePage = () => {
    
 }
 
-export default UpdatePage
+export default UpdatePage ;
