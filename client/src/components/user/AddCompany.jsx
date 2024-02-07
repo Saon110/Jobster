@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import CompnayFinder from '../apis/CompanyFinder';
+import CompnayFinder from '../../apis/CompanyFinder';
 import { useContext } from 'react';
-import { CompanyContext } from '../context/CompanyContext';
+import { CompanyContext } from '../../context/CompanyContext';
 
 const AddCompany = () => {
 

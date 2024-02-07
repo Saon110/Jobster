@@ -1,5 +1,5 @@
 import React from 'react'
-import CompanyUpdate from '../components/CompanyUpdate'
+import CompanyUpdate from '../../components/user/CompanyUpdate'
 
 const UpdatePage = () => {
     return (
