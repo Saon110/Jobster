@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import CompanyFinder from '../apis/CompanyFinder';
+import CompanyFinder from '../../apis/CompanyFinder';
 import CompanyList from './CompanyList';
 
 const JobDetails = () => {
@@ -18,7 +18,7 @@ const JobDetails = () => {
         
         console.log (companyId);
         
-        const response = await CompanyFinder.get(`/${companyId}/jobs`);
+        const response = await CompanyFinder.get(`User/Company/${companyId}/jobs`);
         setJobs(response.data.data.jobs);
       } catch (error) {
         console.error('Error fetching job details:', error);

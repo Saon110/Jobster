@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
-import CompanyFinder from '../apis/CompanyFinder';
+import CompanyFinder from '../../apis/CompanyFinder';
 import { useNavigate } from 'react-router-dom';
 
 const CompanyUpdate = (props) => {

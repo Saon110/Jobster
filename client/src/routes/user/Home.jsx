@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
-import AddCompany from '../components/AddCompany'
-import CompanyList from '../components/CompanyList'
+import Header from '../../components/user/Header'
+import AddCompany from '../../components/user/AddCompany'
+import CompanyList from '../../components/user/CompanyList'
 
 const Home = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useContext ,useState} from 'react'
 import { useEffect } from 'react';
-import CompnayFinder from '../apis/CompanyFinder';
-import { CompanyContext } from '../context/CompanyContext';
+import CompnayFinder from '../../apis/CompanyFinder';
+import { CompanyContext } from '../../context/CompanyContext';
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom' ;
 
@@ -16,8 +16,9 @@ const CompanyList = (props) => {
         const fetchData = async () => {
 
             try {
+               // console.log ("hell0");
 
-                const response = await CompnayFinder.get("/");
+                const response = await CompnayFinder.get("/User/Company");
                 setCompany(response.data.data.companies);
 
             }

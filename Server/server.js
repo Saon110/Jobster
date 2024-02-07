@@ -4,19 +4,45 @@ const morgan = require('morgan');
 const cors = require('cors');
 const db = require("./db");
 
+
+
+
+
+
+// routes
+
+
+
+
+
+
+
 const app = express();
 
 app.use(morgan("dev"));
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => {
-    console.log('Server running on port ' + port);
-});
+
 
 //middlware
 
 app.use(cors());
 app.use(express.json());
+
+
+
+
+
+const loginRouter = require ('./routes/login');
+app.use ('/api/v1/login', loginRouter);
+
+
+
+const UserRouter = require ('./routes/user/company');
+app.use ('/api/v1/User',UserRouter);
+
+
+
+
 
 // app.get('/api/v1/Company', async (req, res) => {
 
@@ -41,25 +67,6 @@ app.use(express.json());
 
 
 // advance query finding total_jobs and employee along with employee name
-app.get('/api/v1/Company', async (req, res) => {
-
-    try {
-        const results = await db.query("SELECT c.*, COUNT(DISTINCT j.job_id) AS total_jobs, COUNT(DISTINCT e.employee_id) AS total_employees FROM company c LEFT JOIN jobs j ON c.company_id = j.company_id LEFT JOIN employee e ON j.job_id = e.job_id GROUP BY c.company_id;");
-   
-        console.log(results);
-        res.status(200).json({
-            status: "success",
-            results: results.rows.length,
-            data: {
-                companies: results.rows
-            }
-
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
-});
 
 
 
@@ -169,23 +176,23 @@ app.post('/api/v1/Company/:id/jobs', async(req, res) => {
 
 // find jobs of a company
 
-app.get('/api/v1/Company/:id/jobs', async(req, res) => {
-    console.log(req.params.id);
+// app.get('/api/v1/Company/:id/jobs', async(req, res) => {
+//     console.log(req.params.id);
 
-   try{
-    const results = await db.query("SELECT * FROM jobs WHERE company_id = $1", [req.params.id]);
-    res.status(200).json({
-        status: "success",
-        data: {
-            jobs : results.rows
-        }
+//    try{
+//     const results = await db.query("SELECT * FROM jobs WHERE company_id = $1", [req.params.id]);
+//     res.status(200).json({
+//         status: "success",
+//         data: {
+//             jobs : results.rows
+//         }
 
-    });
-   }
-   catch(err){
-       console.log(err);
-   }
-});
+//     });
+//    }
+//    catch(err){
+//        console.log(err);
+//    }
+// });
 
 // delete a job of a company
 
@@ -202,6 +209,20 @@ app.delete('/api/v1/Company/:id/jobs/:job_id', (req, res) => {
     catch(err){
         console.log(err);
     }
+});
+
+
+
+
+// link routes to routers  
+
+
+
+
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log('Server running on port ' + port);
 });
 
 

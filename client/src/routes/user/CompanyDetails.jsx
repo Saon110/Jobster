@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react' ;
 import {  Route,Routes } from 'react-router-dom';
-import CompanyList from '../components/CompanyList' ;
-import JobDetails from '../components/JobDetails';
+import CompanyList from '../../components/user/CompanyList' ;
+import JobDetails from '../../components/user/JobDetails';
 const CompanyDetails = () => {
   return (
        <div >
