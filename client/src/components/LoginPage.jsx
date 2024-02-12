@@ -33,7 +33,7 @@ const LoginPage = () => {
 
         // Handle successful login
         console.log("Login successful!");
-        navigate("/home");
+        navigate("/User/home");
       } else {
         // Handle login error
         console.log("Login failed!");
