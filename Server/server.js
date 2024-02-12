@@ -37,8 +37,12 @@ app.use ('/api/v1/login', loginRouter);
 
 
 
-const UserRouter = require ('./routes/user/company');
-app.use ('/api/v1/User',UserRouter);
+const UserCompanyRouter = require ('./routes/user/company');
+app.use ('/api/v1/User/Company',UserCompanyRouter);
+
+
+const UserJobRouter = require ('./routes/user/jobs');
+app.use ('/api/v1/User/Jobs',UserJobRouter);
 
 
 

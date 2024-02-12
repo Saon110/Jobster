@@ -6,7 +6,9 @@ import CompanyDetails from './routes/user/CompanyDetails';
 import { CompanyContextProvider } from './context/CompanyContext';
 import UpdatePage from './routes/user/UpdatePage';
 import Login from './routes/Login';
-import CompanyList from './components/user/CompanyList';
+import Companies from './routes/user/Companies';
+import Jobs from './routes/user/Jobs';
+import Apply from './routes/user/Apply';
 
 const App = () => {
   return (
@@ -19,7 +21,10 @@ const App = () => {
                 <Route path="/" element={<Login />} />
                 <Route path="/company/:companyId" element={<CompanyDetails/>} />
                 <Route path="/company/:companyId/update" element={<UpdatePage/>} />
-                <Route path ="/home" element = {<Home/>} />
+                <Route path ="/User/home" element = {<Home/> } />
+                <Route path ="/User/Companies" element = {<Companies/> } />
+                <Route path ="/User/Jobs" element = {<Jobs/> } />
+                <Route path ="/User/Apply" element = {<Apply/> } />
             </Routes>
         </BrowserRouter>
     </div>

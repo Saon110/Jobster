@@ -3,7 +3,7 @@ const {getCompany} = require ('../../controller/Company');
 const {getJobOfCompany}=require ('../../controller/Company');
 
 
-router.get('/Company',async (req,res) =>{
+router.get('/',async (req,res) =>{
    try {
     const results = await getCompany (req.body);
     res.status(200).json({
@@ -21,7 +21,7 @@ router.get('/Company',async (req,res) =>{
 
 });
 
-router.get ('/Company/:id/jobs',async (req,res) => {
+router.get ('/:id/jobs',async (req,res) => {
     try {
         const results = await getJobOfCompany (req);//
     res.status(200).json({

@@ -30,25 +30,25 @@ const CompanyList = (props) => {
 
     }, [setCompany])
 
-    const handleDelete = async (id) => {
-        try {
-            console.log('test', id);
-            const response = await CompnayFinder.delete(`/${id}`);
-            setCompany(prevCompanies => prevCompanies.filter(company => {
-                return company.company_id !== id;
-            }));
+    // const handleDelete = async (id) => {
+    //     try {
+    //         console.log('test', id);
+    //         const response = await CompnayFinder.delete(`/${id}`);
+    //         setCompany(prevCompanies => prevCompanies.filter(company => {
+    //             return company.company_id !== id;
+    //         }));
             
-            // setCompany
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    //         // setCompany
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
    
 
     
-    const handleUpdate = (id) => {
-        navigate(`/Company/${id}/update`);
-    }
+    // const handleUpdate = (id) => {
+    //     navigate(`/Company/${id}/update`);
+    // }
 
     return (
         <div className="list-group">
@@ -61,8 +61,8 @@ const CompanyList = (props) => {
                         <th scope="col">Email </th>
                         <th scope="col">Total jobs </th>
                         <th scope="col">Total employees </th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Delete</th>
+                        {/* <th scope="col">Update</th>
+                        <th scope="col">Delete</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -77,8 +77,8 @@ const CompanyList = (props) => {
                                 <td>{comp.email}</td>
                                 <td>{comp.total_jobs}</td>
                                 <td>{comp.total_employees}</td>
-                                <td><button onClick={()=> handleUpdate(comp.company_id)} className="btn btn-warning">Update</button></td>
-                                <td><button onClick={() => handleDelete(comp.company_id)} className="btn btn-danger">Delete</button></td>
+                                {/* <td><button onClick={()=> handleUpdate(comp.company_id)} className="btn btn-warning">Update</button></td>
+                                <td><button onClick={() => handleDelete(comp.company_id)} className="btn btn-danger">Delete</button></td> */}
                             </tr>
                         );
                     })}
