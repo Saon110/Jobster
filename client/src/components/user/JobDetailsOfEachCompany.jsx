@@ -10,7 +10,7 @@ const JobDetailsOfEachCompany = () => {
   console.log ("hello ");
   console.log (companyId);
   const [jobs, setJobs] = useState([]);
-  const [Name,setName] =useState ([]);
+  const [companyName,setName] =useState ("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +20,9 @@ const JobDetailsOfEachCompany = () => {
         
         const response = await CompanyFinder.get(`User/Company/${companyId}/jobs`);
         setJobs(response.data.data.jobs);
+      
+       // console.log (response.data.data.jobs.company_name);
+        setName (response.data.data.jobs[0].company_name);
       } catch (error) {
         console.error('Error fetching job details:', error);
       }
@@ -28,24 +31,10 @@ const JobDetailsOfEachCompany = () => {
     fetchData();
   }, [companyId]);
 
-  useEffect (()=> {
-    const fetchData2 = async () =>{
-      try {
-        const response = await CompanyFinder.get (`/${companyId}`);
-        setName(response.data.data.company.name);
-        console.log(response.data.data.company.name);
-        
-      } catch (error) {
-        
-      }
-     
-    };
-    fetchData2();
-  },[setName])
-
+  
   return (
     <div>
-      <h2>Job Details of {Name}</h2>
+      <h2>Job Details of : {companyName}</h2>
       <table className="table table-hover table-dark">
         <thead>
           <tr className="bg-primary">

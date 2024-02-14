@@ -24,7 +24,7 @@ const JobDetails = () => {
 
   return (
     <div>
-       <h2>Job Details of </h2>
+       
       <table className="table table-hover table-dark">
         <thead>
           <tr className="bg-primary">
