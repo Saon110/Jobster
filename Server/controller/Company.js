@@ -18,7 +18,7 @@ const getCompany = async (obj) =>
 const getJobOfCompany = async (obj) => 
 {
     try {
-        const results =  await db.query("SELECT * FROM jobs WHERE company_id = $1", [obj.params.id]);
+        const results =  await db.query("SELECT j.* , c.name AS company_name FROM jobs j JOIN  company c ON j.company_id = c.company_id  WHERE j.company_id = $1; ", [obj.params.id]);
         console.log (results);
         return results;
         

@@ -24,6 +24,9 @@ router.get('/',async (req,res) =>{
 router.get ('/:id/jobs',async (req,res) => {
     try {
         const results = await getJobOfCompany (req);//
+        console.log("hello ");
+        console.log(results.rows);
+        console.log("hi");
     res.status(200).json({
         status: "success",
         data: {
