@@ -41,6 +41,10 @@ const UserRouter = require ('./routes/user/company');
 app.use ('/api/v1/User',UserRouter);
 
 
+const CompanyRouter = require ('./routes/company/companyRoutes');
+app.use ('/api/v1/Employer',CompanyRouter);
+
+
 
 
 

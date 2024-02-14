@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react' ;
-import {  Route,Routes } from 'react-router-dom';
-import CompanyList from '../../components/user/CompanyList' ;
+// import React, { Fragment } from 'react' ;
+// import {  Route,Routes } from 'react-router-dom';
+// import CompanyList from '../../components/user/CompanyList' ;
 import JobDetails from '../../components/user/JobDetails';
 const CompanyDetails = () => {
   return (
