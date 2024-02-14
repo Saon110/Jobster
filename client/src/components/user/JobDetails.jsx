@@ -31,6 +31,7 @@ const JobDetails = () => {
             <th scope="col">Job Name</th>
             <th scope="col">Salary</th>
             <th scope="col">Description</th>
+            <th scope ="col">Company </th>
             {/* <th scope="col">Status</th> */}
           </tr>
         </thead>
@@ -40,6 +41,7 @@ const JobDetails = () => {
               <td>{job.name}</td>
               <td>{job.salary}</td>
               <td>{job.description}</td>
+              <td> {job.company_name}</td>
               {/* <td>{job.status}</td> */}
             </tr>
           ))}
