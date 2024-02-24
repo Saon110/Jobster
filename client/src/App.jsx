@@ -6,6 +6,7 @@ import CompanyDetails from './routes/user/CompanyDetails';
 import { CompanyContextProvider } from './context/CompanyContext';
 import UpdatePage from './routes/user/UpdatePage';
 import Login from './routes/Login';
+
 // import CompanyList from './components/user/CompanyList';
 import Jobs from './routes/company/Jobs';
 import Employees from './routes/company/Employees';
@@ -17,13 +18,14 @@ const App = () => {
 
     <CompanyContextProvider>
 
-    <div className='container'>
+    <div>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/company/:companyId" element={<CompanyDetails/>} />
                 <Route path="/company/:companyId/update" element={<UpdatePage/>} />
-                <Route path ="/home" element = {<Home/>} />
+                <Route path ="/User/home" element = {<Home/> } />
+
                 <Route path ="/Employer/:id/jobs" element = {<Jobs/>} />
                 <Route path ="/Employer/:id/employees" element = {<Employees/>} />
                 <Route path ="/Employer/:id" element = {<CompanyHome/>} />
@@ -38,3 +40,4 @@ const App = () => {
 };
 
 export default App;
+

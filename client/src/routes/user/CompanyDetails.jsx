@@ -1,12 +1,14 @@
 // import React, { Fragment } from 'react' ;
 // import {  Route,Routes } from 'react-router-dom';
 // import CompanyList from '../../components/user/CompanyList' ;
-import JobDetails from '../../components/user/JobDetails';
+import JobDetails from '../../components/user/JobDetailsOfEachCompany' ;
 const CompanyDetails = () => {
   return (
        <div >
-         
+         <Navbar/>
+         <div className='container'> 
          <JobDetails/>
+         </div>
 
        </div>
       
