@@ -1,0 +1,47 @@
+/* jobdetails.css */
+
+.job-details-box {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.job-details-content {
+    flex-grow: 1;
+}
+
+.job-details-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.apply-button,
+.view-requirements-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+/* Add these styles to jobdetails.css */
+
+
+  /* Add this to your jobdetails.css */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .skill-item {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
