@@ -1,112 +1,88 @@
-import React, { useContext ,useState} from 'react'
-import { useEffect } from 'react';
-import CompnayFinder from '../../apis/CompanyFinder';
+import React, { useContext, useEffect, useState } from 'react';
 import { CompanyContext } from '../../context/CompanyContext';
+import CompanyFinder from '../../apis/CompanyFinder';
 import { useNavigate } from 'react-router-dom';
-import {Link} from 'react-router-dom' ;
+import { Link } from 'react-router-dom';
+import '../../css/companylist.css';
+import SearchBar from './SearchBar';
 
 const CompanyList = (props) => {
+  const { company, setCompany } = useContext(CompanyContext);
+  const navigate = useNavigate();
+  const [originalList, setOriginalList] = useState([]);
 
-    const { company, setCompany } = useContext(CompanyContext);
-    // const [company, setCompany] = useState([]);
-    const navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await CompanyFinder.get("/User/Company");
+        setCompany(response.data.data.companies);
+        setOriginalList(response.data.data.companies);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [setCompany]);
 
-    useEffect(() => {
+  const handleSearch = async (selectedOption, searchText) => {
+    console.log(selectedOption + " " + searchText);
 
-        const fetchData = async () => {
+    if (selectedOption === 'All') {
+      setCompany(originalList);
+    } else {
+      try {
+        const response = await CompanyFinder.get("/User/Company/Search", {
+          headers: {
+            type: `${selectedOption}`,
+            value: `${searchText}`
+          }
+        });
+        setCompany(response.data.data.companies);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
-            try {
-               // console.log ("hell0");
+  return (
+    <div>
+      <h2 style={{ color: '#fff' }}>Company list </h2>
+      <SearchBar
+        options={[
+          { value: 'All', label: 'All' },
+          { value: 'Name', label: 'By Name' },
+          { value: 'Address', label: 'By Address' },
+          // Add more options as needed
+        ]}
+        onSearch={handleSearch}
+      />
 
-                const response = await CompnayFinder.get("/User/Company");
-                setCompany(response.data.data.companies);
+      <div className="company-list">
+        {company.map((comp, index) => (
+          <div key={index} className="smart-box">
+            <h3>
+              <Link to={`/company/${comp.company_id}`}>{comp.name}</Link>
+            </h3>
+            <p>
+              <strong>Address:</strong> {comp.address}
+            </p>
+            <p>
+              <strong>Website:</strong> {comp.website}
+            </p>
+            <p>
+              <strong>Email:</strong> {comp.email}
+            </p>
+            <p>
+              <strong>Total Jobs:</strong> {comp.total_jobs}
+            </p>
+            <p>
+              <strong>Total Employees:</strong> {comp.total_employees}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-            }
-            catch (err) {
-
-            }
-        };
-        fetchData();
-
-    }, [setCompany])
-
-    // const handleDelete = async (id) => {
-    //     try {
-    //         console.log('test', id);
-    //         const response = await CompnayFinder.delete(`/${id}`);
-    //         setCompany(prevCompanies => prevCompanies.filter(company => {
-    //             return company.company_id !== id;
-    //         }));
-            
-    //         // setCompany
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-   
-
-    
-    // const handleUpdate = (id) => {
-    //     navigate(`/Company/${id}/update`);
-    // }
-
-    return (
-        <div className="list-group">
-            <table className="table table-hover table-dark">
-                <thead>
-                    <tr className="bg-primary">
-                        <th scope="col">Company</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Website</th>
-                        <th scope="col">Email </th>
-                        <th scope="col">Total jobs </th>
-                        <th scope="col">Total employees </th>
-                        {/* <th scope="col">Update</th>
-                        <th scope="col">Delete</th> */}
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {company.map((comp, index) => {
-                        return (
-                            <tr key={index}>
-                                {/* <td>{comp.name}</td> */}
-                                <td><Link to={`/company/${comp.company_id}`} >{comp.name}</Link></td>
-                                <td>{comp.address}</td>
-                                <td>{comp.website}</td>
-                                <td>{comp.email}</td>
-                                <td>{comp.total_jobs}</td>
-                                <td>{comp.total_employees}</td>
-                                {/* <td><button onClick={()=> handleUpdate(comp.company_id)} className="btn btn-warning">Update</button></td>
-                                <td><button onClick={() => handleDelete(comp.company_id)} className="btn btn-danger">Delete</button></td> */}
-                            </tr>
-                        );
-                    })}
-                    {/* <tr>
-                    <td>Company 1</td>
-                    <td>Address 1</td>
-                    <td>Website 1</td>
-                    <td><button className="btn btn-warning">Update</button></td>
-                    <td><button className="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Company 2</td>
-                    <td>Address 2</td>
-                    <td>Website 2</td>
-                    <td><button className="btn btn-warning">Update</button></td>
-                    <td><button className="btn btn-danger">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Company 3</td>
-                    <td>Address 3</td>
-                    <td>Website 3</td>
-                    <td><button className="btn btn-warning">Update</button></td>
-                    <td><button className="btn btn-danger">Delete</button></td>
-                </tr> */}
-                </tbody>
-            </table>
-        </div>
-    )
-}
-
-export default CompanyList
+export default CompanyList;

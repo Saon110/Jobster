@@ -8,15 +8,12 @@ const checkUser = async (obj)=>
         //const result = await db.query("select * from users ;");
         const result = await db.query ("SELECT * FROM users WHERE email = $1 AND password = $2 ;",[obj.email,obj.password]);
        //const result = {add : "dlkd", addd : "dklsf"};
-        console.log (result);
+       // console.log (result);
         return result; 
         
     } catch (error) {
         console.log (error);
     }
-    
-
-
 }
 
 
