@@ -52,6 +52,10 @@ app.use ('/api/v1/User/Myprofile', UserProfileRouter);
 
 
 
+const CompanyRouter = require ('./routes/company/companyRoutes');
+app.use ('/api/v1/Employer',CompanyRouter);
+
+
 
 
 

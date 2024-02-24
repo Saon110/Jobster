@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route ,Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/user/Home';
 import CompanyDetails from './routes/user/CompanyDetails';
 //import CompanyUpdate from './components/CompanyUpdate';
 import { CompanyContextProvider } from './context/CompanyContext';
 import UpdatePage from './routes/user/UpdatePage';
 import Login from './routes/Login';
+
 import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
 import Apply from './routes/user/Apply';
@@ -13,6 +14,7 @@ import Myprofile from './routes/user/Myprofile';
 import UpdateProfile from './components/user/UpdateProfile';
 import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
+
 
 const App = () => {
   return (
@@ -32,6 +34,7 @@ const App = () => {
                 <Route path = "/User/Myprofile"element = {<Myprofile/>} />
                 <Route path = "/User/Myprofile/Update" element = {<UpdateProfile/> } />
                 <Route path ="/dummy" element = {<AddCompany/>} />
+
             </Routes>
         </BrowserRouter>
     </div>
@@ -41,3 +44,4 @@ const App = () => {
 };
 
 export default App;
+
