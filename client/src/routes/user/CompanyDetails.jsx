@@ -1,3 +1,4 @@
+
 import React, { Fragment } from 'react' ;
 import {  Route,Routes } from 'react-router-dom';
 import CompanyList from '../../components/user/CompanyList' ;
@@ -13,6 +14,7 @@ const CompanyDetails = () => {
          <div className='container'>
         <JobDetails/>
         </div>
+
 
        </div>
       
