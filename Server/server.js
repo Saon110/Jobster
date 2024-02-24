@@ -35,10 +35,21 @@ app.use(express.json());
 const loginRouter = require ('./routes/login');
 app.use ('/api/v1/login', loginRouter);
 
+const signUpRouter = require ('./routes/signup');
+app.use ('/api/v1/signup', signUpRouter);
+
+const UserCompanyRouter = require ('./routes/user/company');
+app.use ('/api/v1/User/Company',UserCompanyRouter);
 
 
-const UserRouter = require ('./routes/user/company');
-app.use ('/api/v1/User',UserRouter);
+const UserJobRouter = require ('./routes/user/jobs');
+app.use ('/api/v1/User/Jobs',UserJobRouter);
+
+
+const UserProfileRouter = require ('./routes/user/profile');
+app.use ('/api/v1/User/Myprofile', UserProfileRouter);
+
+
 
 
 const CompanyRouter = require ('./routes/company/companyRoutes');

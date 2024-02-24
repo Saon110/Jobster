@@ -1,48 +1,80 @@
-// Import necessary dependencies
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import CompanyFinder from '../../apis/CompanyFinder';
 import Modal from 'react-modal';
-import '../../css/jobdetails.css';
 import SearchBar from './SearchBar'; // Import the SearchBar component
-import { ToastContainer, toast } from 'react-toastify'; // Import the ToastContainer and toast from react-toastify
-import 'react-toastify/dist/ReactToastify.css';
-// Import the CSS file
+import '../../css/jobdetails.css'; // Import the CSS file
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
-const JobDetails = () => {
-  // State variables
+const JobDetailsOfEachCompany = () => {
+  const { companyId } = useParams();
   const [jobs, setJobs] = useState([]);
+  const [companyName, setName] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentJob, setCurrentJob] = useState(null);
   const [skills, setSkills] = useState([]);
   const [originalList, setOriginalList] = useState([]);
-// Add filteredJobs state
- 
-  // Fetch jobs on component mount
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await CompanyFinder.get('/User/Jobs');
+        const response = await CompanyFinder.get(`User/Company/${companyId}/jobs`);
         setJobs(response.data.data.jobs);
         setOriginalList(response.data.data.jobs);
-
+        setName(response.data.data.jobs[0].company_name);
       } catch (error) {
-        console.log(error);
+        console.error('Error fetching job details:', error);
       }
     };
-    fetchData();
-  }, [setJobs]);
 
-  // Fetch skills for the selected job
+    fetchData();
+  }, [companyId]);
+
+  const handleApply = (jobId) => {
+    console.log(`Applying for job with ID: ${jobId}`);
+    alert('Application submitted!');
+  };
+
+  const handleViewRequirements = (job) => {
+    setCurrentJob(job);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setCurrentJob(null);
+    setSkills([]);
+    setIsOpen(false);
+  };
+
+  const handleSearch = async (selectedOption, searchText) => {
+    console.log(selectedOption + " " + searchText);
+
+    if (selectedOption === 'All') {
+      setJobs(originalList);
+    } else {
+      try {
+        console.log("dlskfaj;" );
+        const response = await CompanyFinder.get(`/User/Company/${companyId}/jobs/Search`, {
+          headers: {
+            type: `${selectedOption}`,
+            value: `${searchText}`
+          }
+        });
+        console.log("dlskfaj;" );
+        setJobs(response.data.data.jobs);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchSkills = async () => {
       if (currentJob) {
         try {
           const response = await CompanyFinder.get(`/User/Jobs/${currentJob.job_id}/skill`);
           setSkills(response.data.data.skills);
-          console.log(response.data.data.skills);
         } catch (error) {
           console.log(error);
         }
@@ -51,59 +83,20 @@ const JobDetails = () => {
     fetchSkills();
   }, [currentJob]);
 
-  // Apply logic
-  const handleApply = (jobId) => {
-    console.log(`Applying for job with ID: ${jobId}`);
-    alert(`Application submitted! ${jobId}`);
-  };
-
-  // View requirements logic
-  const handleViewRequirements = (job) => {
-    setCurrentJob(job);
-    setIsOpen(true);
-  };
-
-  // Close modal
-  const closeModal = () => {
-    setCurrentJob(null);
-    setSkills([]);
-    setIsOpen(false);
-  };
-
-  // Search function
-  const handleSearch = async (selectedOption, searchText) => {
-    console.log(selectedOption + " " + searchText);
-
-    if (selectedOption === 'All') {
-      setJobs(originalList);
-    } else {
-      try {
-        const response = await CompanyFinder.get("/User/Jobs/Search", {
-          headers: {
-            type: `${selectedOption}`,
-            value: `${searchText}`
-          }
-        });
-        setJobs(response.data.data.jobs);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
-
   return (
     <div>
-      <SearchBar options={[
-          { value: 'All', label: 'All' },
-          { value: 'Name', label: 'By Name' },
-          { value: 'Skill', label: 'By Skill' },
-          { value: 'Company', label: 'By Company'},
+      <h2 style={{ color: '#fff' }}>Job Details of: {companyName}</h2>
+      {/* Integrate the SearchBar component */}
+      <SearchBar  options={[
+                  { value: 'All', label: 'All' },
+                  { value: 'Name', label: 'By Name' },
+                  { value: 'Skill', label: 'By Skill' },
           // Add more options as needed
         ]} onSearch={handleSearch} />
 
       {jobs.map((job, index) => (
         <div key={index} className="job-details-box">
-          <div className="job-details-content">
+          <div className="job-info">
             <h3>{job.name}</h3>
             <p>
               <strong>Salary:</strong> {job.salary}
@@ -112,7 +105,7 @@ const JobDetails = () => {
               <strong>Description:</strong> {job.description}
             </p>
             <p>
-              <strong>Company:</strong> {job.company_name}
+              <strong>Status:</strong> {job.status}
             </p>
           </div>
           <div className="job-details-buttons">
@@ -126,7 +119,6 @@ const JobDetails = () => {
         </div>
       ))}
 
-      {/* Modal component */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -146,7 +138,7 @@ const JobDetails = () => {
       >
         <div className="job-details-box">
           <div className="job-details-content">
-            <h2
+          <h2
               style={{
                 color: '#fff',
                 fontWeight: 'bold',
@@ -168,7 +160,7 @@ const JobDetails = () => {
             </div>
           </div>
           <div className="job-details-buttons">
-            <button onClick={closeModal} className="apply-button float-right">
+            <button onClick={closeModal} className="apply-button float-end">
               Close
             </button>
           </div>
@@ -178,4 +170,4 @@ const JobDetails = () => {
   );
 };
 
-export default JobDetails;
+export default JobDetailsOfEachCompany;

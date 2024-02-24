@@ -7,9 +7,6 @@ import { CompanyContextProvider } from './context/CompanyContext';
 import UpdatePage from './routes/user/UpdatePage';
 import Login from './routes/Login';
 
-import Employees from './routes/company/Employees';
-import CompanyHome from './routes/company/Home';
-import CompanyAddJob from './routes/company/AddJob';
 import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
 import Apply from './routes/user/Apply';
@@ -18,8 +15,6 @@ import UpdateProfile from './components/user/UpdateProfile';
 import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
 
-
-import Job from './routes/company/Jobs';
 
 const App = () => {
   return (
@@ -39,11 +34,6 @@ const App = () => {
                 <Route path = "/User/Myprofile"element = {<Myprofile/>} />
                 <Route path = "/User/Myprofile/Update" element = {<UpdateProfile/> } />
                 <Route path ="/dummy" element = {<AddCompany/>} />
-
-                <Route path ="/Employer/:id/jobs" element = {<Job/>} />
-                <Route path ="/Employer/:id/employees" element = {<Employees/>} />
-                <Route path ="/Employer/:id" element = {<CompanyHome/>} />
-                <Route path ="/Employer/:id/addjob" element = {<CompanyAddJob/>} />
 
             </Routes>
         </BrowserRouter>
