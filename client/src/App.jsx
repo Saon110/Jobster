@@ -10,6 +10,7 @@ import Login from './routes/Login';
 import Jobs from './routes/company/Jobs';
 import Employees from './routes/company/Employees';
 import CompanyHome from './routes/company/Home';
+import CompanyAddJob from './routes/company/AddJob';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path ="/Employer/:id/jobs" element = {<Jobs/>} />
                 <Route path ="/Employer/:id/employees" element = {<Employees/>} />
                 <Route path ="/Employer/:id" element = {<CompanyHome/>} />
+                <Route path ="/Employer/:id/addjob" element = {<CompanyAddJob/>} />
 
             </Routes>
         </BrowserRouter>
