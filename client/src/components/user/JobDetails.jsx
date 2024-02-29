@@ -52,9 +52,36 @@ const JobDetails = () => {
   }, [currentJob]);
 
   // Apply logic
-  const handleApply = (jobId) => {
-    console.log(`Applying for job with ID: ${jobId}`);
-    alert(`Application submitted! ${jobId}`);
+  const handleApply = async (jobId) => {
+
+     try {
+       const authToken = localStorage.token ;
+//console.log (authToken);
+      console.log ("hello");
+       const response = await CompanyFinder.get (`/User/Jobs/${jobId}/Apply` , {
+        headers: {
+          authToken: `${authToken}`,
+           },
+       });
+       console.log (response);
+       if (response.data.status.success === true)
+       {
+        console.log(`Applying for job with ID: ${jobId}`);
+       alert(`Application submitted! ${jobId}`);
+
+       }
+       else 
+       {
+       // console.log(response.notice_text);
+        alert (response.data.status.notice_text);
+
+
+       }
+     } catch (error) {
+      console.log (error);
+      
+     }
+    
   };
 
   // View requirements logic

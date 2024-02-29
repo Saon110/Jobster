@@ -1,5 +1,9 @@
 const router = require ('express').Router();
-const {getAllJob,getSkillsofJob,getJobByName,getJobsByCompanyName,getJobsBySkillName} = require ('../../controller/Jobs');
+
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const {getAllJob,getSkillsofJob,getJobByName,getJobsByCompanyName,getJobsBySkillName, postApply} = require ('../../controller/user/Jobs');
+const { authenticateToken } = require('../../middlewares/authorization');
 
 
 
@@ -70,6 +74,36 @@ router.get ('/:id/skill',async (req,res) =>{
         console.log (error);
         
     }
+})
+
+
+router.get ('/:id/Apply',authenticateToken,async(req,res)=>{
+   console.log ('ashche ekhane');
+   if (req.user)
+   {
+    const user_id = req.user.user_id ;
+    try {
+      console.log ("authenticated");
+      const results = await postApply (user_id, req.params.id);
+      console.log (results);
+      console.log (results.success) ;
+      console.log (results.notice_text);
+      res.status(200).json({
+        status: results ,
+       
+    });
+
+    
+    } catch (error) {
+      console.log (error);
+      
+    }
+
+   }
+   else {
+    console.log ("not authenticated");
+   }
+ 
 })
 
 module.exports = router ;
