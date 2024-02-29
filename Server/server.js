@@ -62,6 +62,10 @@ app.use ('/api/v1/Employer',CompanyRouter);
 
 
 
+
+
+
+
 // app.get('/api/v1/Company', async (req, res) => {
 
 //     try {

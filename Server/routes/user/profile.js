@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 const { authenticateToken } = require('../../middlewares/authorization');
-const { getProfileDetails,updateProfile} = require('../../controller/Profile');
+const { getProfileDetails,updateProfile} = require('../../controller/user/Profile');
 router.use(cookieParser());
 
 

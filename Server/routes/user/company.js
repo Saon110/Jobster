@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { getCompany, getCompanyByAddress ,getCompanyByName} = require('../../controller/Company');
-const { getJobOfCompany , getJobsByNameForCompany,getJobsBySkillForCompany } = require('../../controller/Company');
+const { getCompany, getCompanyByAddress ,getCompanyByName} = require('../../controller/user/Company');
+const { getJobOfCompany , getJobsByNameForCompany,getJobsBySkillForCompany } = require('../../controller/user/Company');
 
 
 router.get('/', async (req, res) => {

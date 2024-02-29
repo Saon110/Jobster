@@ -1,4 +1,4 @@
-const db = require ('../db/index');
+const db = require ('../../db/index');
 
 const getAllJob = async () =>
 {
@@ -102,4 +102,25 @@ const getSkillsofJob = async (obj) =>{
 
 
 
-module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName};
+
+// post requests for applying job
+// post requests for applying job
+const postApply = async (user_id, job_id) => {
+  try {
+    const response = await db.query(`SELECT * FROM apply_for_job(${user_id}, ${job_id})`);
+    
+    const result = response.rows[0];
+    return result ;
+    // console.log(result.success);       // true or false
+    // console.log(result.notice_text);  // Notice message
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Example usage
+ // Replace with actual user and job IDs
+
+
+
+module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName,postApply};
