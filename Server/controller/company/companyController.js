@@ -6,7 +6,7 @@ const getJobs = async (company_id) => {
     try {
         const query = `
         SELECT * FROM jobs WHERE company_id = $1;`;
-        // const results = await db.query("SELECT * FROM jobs WHERE company_id = $1", [obj.params.id]);`
+        // const results = await db.query("SELECT * FROM jobs WHERE company_id = $1", [obj.params.id]);
         const results = await db.query(query, [company_id]);
         console.log(results);
         return results;
