@@ -50,7 +50,7 @@ router.get('/:id/jobs/Search', async (req, res) => {
     console.log ("hello");
 
     if (req.headers.type === 'Name') {
-      results = await getJobsBySkillForCompany(req.params.id,req.headers.value);
+      results = await getJobsByNameForCompany(req.params.id,req.headers.value);
     }  else if (req.headers.type === 'Skill') {
       results = await getJobsBySkillForCompany(req.params.id,req.headers.value);
     } 

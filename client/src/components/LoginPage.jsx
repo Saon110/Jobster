@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CompanyFinder from "../apis/CompanyFinder";
 import { useNavigate, Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
 import "../css/login.css"; // Add a CSS file for styling
 
 const LoginPage = () => {
@@ -10,6 +11,8 @@ const LoginPage = () => {
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupContact, setSignupContact] = useState("");
+  const [signupBirthdate, setSignupBirthdate] = useState("");
+
   const navigate = useNavigate();
 
   const handleLoginEmailChange = (event) => {
@@ -36,6 +39,10 @@ const LoginPage = () => {
     setSignupContact(event.target.value);
   };
 
+  const handleSignupBirthdateChange = (event) => {
+    setSignupBirthdate(event.target.value);
+  };
+
 
   const isSignupFormValid = () => {
     return (
@@ -43,6 +50,7 @@ const LoginPage = () => {
       signupEmail.trim() !== "" &&
       signupContact.trim() !== "" &&
       signupPassword.trim() !== "" &&
+      signupBirthdate.trim() !== "" &&
       isValidEmail(signupEmail)
     );
   };
@@ -78,6 +86,7 @@ const LoginPage = () => {
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+    console.log (signupBirthdate);
 
 
     if (!isSignupFormValid()) {
@@ -94,6 +103,7 @@ const LoginPage = () => {
         email: signupEmail,
         password: signupPassword,
         contact_no : signupContact,
+        birth_date : signupBirthdate
       });
 
       if (response.status === 201) {
@@ -149,6 +159,7 @@ const LoginPage = () => {
                           />
                           <i className="input-icon uil uil-at"></i>
                         </div>
+                        
                         <div className="form-group mt-2">
                           <input
                             type="password"
@@ -220,6 +231,21 @@ const LoginPage = () => {
                           />
                           <i className="input-icon uil uil-at"></i>
                         </div>
+                                             <div className="form-group mt-2">
+                          <input
+                            type="date"
+                            name="birthdate"
+                            className="form-style"
+                            placeholder="Your Birthdate"
+                            id="birthdate"
+                            autoComplete="off"
+                            value={signupBirthdate}
+                            onChange={handleSignupBirthdateChange}
+                          />
+                          <i className="input-icon uil uil-calendar"></i>
+                        </div>
+
+
                         <div className="form-group mt-2">
                           <input
                             type="password"

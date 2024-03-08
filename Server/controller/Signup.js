@@ -20,7 +20,7 @@ const checkIfExist = async (obj) =>
 
 const SignUpUser = async (obj ) => {
     try {
-        const result = await db.query('INSERT INTO users (name, email, password, contact_no) VALUES ($1, $2, $3, $4) RETURNING *;', [obj.name, obj.email, obj.password, obj.contact_no]);
+        const result = await db.query('INSERT INTO users (name, email, password, contact_no,birth_date) VALUES ($1, $2, $3, $4, $5) RETURNING *;', [obj.name, obj.email, obj.password, obj.contact_no,obj.birth_date]);
         console.log (result);
         return result ;
 

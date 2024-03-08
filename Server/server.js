@@ -50,6 +50,8 @@ const UserProfileRouter = require ('./routes/user/profile');
 app.use ('/api/v1/User/Myprofile', UserProfileRouter);
 
 
+const UserApplicationRouter = require ('./routes/user/application');
+app.use ('/api/v1/User/Applications',UserApplicationRouter);
 
 
 const CompanyRouter = require ('./routes/company/companyRoutes');

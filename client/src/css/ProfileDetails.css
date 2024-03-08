@@ -62,3 +62,46 @@ h2 {
     background-color: #dc3545; /* Red color for the logout button */
     color: #fff;
 }
+.skills-section {
+    flex-basis: 40%;
+    color: #000; /* Set text color to black */
+}
+
+/* Style for the skills heading */
+.skills-section h3 {
+    font-weight: bold;
+}
+
+/* Style for the skills list */
+.skills-section ul {
+    /* list-style: none; */
+    padding: 0;
+}
+
+/* Style for individual skills in the list */
+.skills-section li {
+    font-weight: bold;
+    color: #000; /* Make skill names black */
+}
+
+
+.company-section {
+    /* flex-basis: 40%; */
+    color: #000; /* Set text color to black */
+}
+
+/* Style for the company heading */
+.company-section h3 {
+    font-weight: bold;
+}
+
+/* Style for the company information */
+.company-section div {
+    margin-bottom: 10px;
+}
+
+/* Style for strong elements in the company section */
+.company-section strong {
+    color: #000; /* Set text color to black for strong (bold) elements */
+    font-weight: bold; /* Set font weight to bold */
+}
