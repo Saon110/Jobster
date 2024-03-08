@@ -11,7 +11,7 @@ import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
 import Myprofile from './routes/user/Myprofile';
 import UpdateProfile from './components/user/UpdateProfile';
-//import SearchBar from './components/user/SearchBar';
+// import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
 import UpdateSkills from './components/user/UpdateSkills';
 import MyApplications from './routes/user/MyApplications' ;
