@@ -11,18 +11,20 @@ import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
 import Myprofile from './routes/user/Myprofile';
 import UpdateProfile from './components/user/UpdateProfile';
+//import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
+import UpdateSkills from './components/user/UpdateSkills';
+import MyApplications from './routes/user/MyApplications' ;
+import Interviews from './routes/user/Interviews';
+import Job_history from './routes/user/Job_history';
+import UserNotifications from './routes/user/UserNotifications';
+
 import AddJob from './routes/company/AddJob';
 import Applications from './routes/company/Applications';
 import Employees from './routes/company/Employees';
 import CompanyHome from './routes/company/Home';
 import Job from './routes/company/Jobs';
-import UpdateSkills from './components/user/UpdateSkills';
-import MyApplications from './routes/user/MyApplications'
-import Interviews from './routes/user/Interviews';
-import Job_history from './routes/user/Job_history';
-import UserNotifications from './routes/user/UserNotifications';
-import ResignPage from './components/user/ResignPage';
+
 
 
 const App = () => {
