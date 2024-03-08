@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import Navbar from '../../components/company/Navbar'
 import JobList from '../../components/company/JobList'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Jobs = () => {
 
-  const { id } = useParams()
+  // const { id } = useParams()
 
 
   return (
@@ -16,7 +16,7 @@ const Jobs = () => {
         <JobList/>
         <h1>
   <Link
-    to={`/Employer/${id}/addjob`}
+    to={`/Employer/addjob`}
     style={{
       display: 'inline-block',
       padding: '8px 16px', // Increased padding
