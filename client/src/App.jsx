@@ -7,18 +7,23 @@ import { CompanyContextProvider } from './context/CompanyContext';
 import UpdatePage from './routes/user/UpdatePage';
 import Login from './routes/Login';
 
+import CompanyLogin from './routes/company/CompanyLogin';
 import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
 import Apply from './routes/user/Apply';
 import Myprofile from './routes/user/Myprofile';
 import UpdateProfile from './components/user/UpdateProfile';
-import SearchBar from './components/user/SearchBar';
+// import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
 import AddJob from './routes/company/AddJob';
-import Applications from './routes/company/Applications';
+import Applications from './routes/company/ApplicationList';
+import Application from './routes/company/Application';
 import Employees from './routes/company/Employees';
 import CompanyHome from './routes/company/Home';
 import Job from './routes/company/Jobs';
+import InterviewList from './routes/company/Interviews';
+import NotificationList from './routes/company/Notifications';
+
 
 
 const App = () => {
@@ -40,11 +45,15 @@ const App = () => {
                 <Route path = "/User/Myprofile/Update" element = {<UpdateProfile/> } />
                 <Route path ="/dummy" element = {<AddCompany/>} />
 
-                <Route path ="/Employer/:id/addjob" element = {<AddJob/>} />
-                <Route path ="/Employer/:id/applications" element = {<Applications/>} />
-                <Route path ="/Employer/:id/employees" element = {<Employees/>} />
-                <Route path ="/Employer/:id/jobs" element = {<Job/>} />
-                <Route path ="/Employer/:id" element = {<CompanyHome/>} />
+                <Route path ="/CompanyLogin" element = {<CompanyLogin/>} />
+                <Route path ="/Employer/addjob" element = {<AddJob/>} />
+                <Route path ="/Employer/applications" element = {<Applications/>} />
+                <Route path ="/Employer/applications/:id" element = {<Application/>} />
+                <Route path ="/Employer/employees" element = {<Employees/>} />
+                <Route path ="/Employer/jobs" element = {<Job/>} />
+                <Route path ="/Employer/home" element = {<CompanyHome/>} />
+                <Route path ="/Employer/interviews" element = {<InterviewList/>} />
+                <Route path ="/Employer/notifications" element = {<NotificationList/>} />
             </Routes>
         </BrowserRouter>
     </div>

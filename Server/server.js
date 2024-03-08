@@ -55,7 +55,20 @@ app.use ('/api/v1/User/Myprofile', UserProfileRouter);
 const CompanyRouter = require ('./routes/company/companyRoutes');
 app.use ('/api/v1/Employer',CompanyRouter);
 
+const companyLoginRouter = require ('./routes/company/companyLogin');
+app.use ('/api/v1/CompanyLogin', companyLoginRouter);
 
+const companySignUpRouter = require ('./routes/company/companySignUp');
+app.use ('/api/v1/CompanySignup', companySignUpRouter);
+
+const companyApplicationRouter = require ('./routes/company/Application');
+app.use ('/api/v1/Employer',companyApplicationRouter);
+
+const companyInterviewRouter = require ('./routes/company/Interview');
+app.use ('/api/v1/Employer',companyInterviewRouter);
+
+const companyNotificationRouter = require ('./routes/company/Notification');
+app.use ('/api/v1/Employer',companyNotificationRouter);
 
 
 
