@@ -19,6 +19,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.4",
+    "sweetalert2": "^11.10.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
