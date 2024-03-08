@@ -1,0 +1,35 @@
+/* Add these styles to your CSS file */
+
+.application-details-box {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* White background color */
+}
+
+.application-details-content {
+    flex: 1;
+    color: #000; /* Set text color to black */
+}
+
+.application-details-content p {
+    margin-bottom: 10px;
+}
+
+.application-details-content strong {
+    color: #000; /* Set text color to black for strong (bold) elements */
+    font-weight: bold; /* Set font weight to bold */
+}
+
+/* Style for individual application details in the list */
+.application-details-box {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+}

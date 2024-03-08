@@ -10,11 +10,16 @@ import Login from './routes/Login';
 import CompanyLogin from './routes/company/CompanyLogin';
 import Companies from './routes/user/Companies';
 import Jobs from './routes/user/Jobs';
-import Apply from './routes/user/Apply';
 import Myprofile from './routes/user/Myprofile';
 import UpdateProfile from './components/user/UpdateProfile';
 // import SearchBar from './components/user/SearchBar';
 import AddCompany from './components/user/AddCompany';
+import UpdateSkills from './components/user/UpdateSkills';
+import MyApplications from './routes/user/MyApplications' ;
+import Interviews from './routes/user/Interviews';
+import Job_history from './routes/user/Job_history';
+import UserNotifications from './routes/user/UserNotifications';
+
 import AddJob from './routes/company/AddJob';
 import Applications from './routes/company/ApplicationList';
 import Application from './routes/company/Application';
@@ -23,6 +28,7 @@ import CompanyHome from './routes/company/Home';
 import Job from './routes/company/Jobs';
 import InterviewList from './routes/company/Interviews';
 import NotificationList from './routes/company/Notifications';
+
 
 
 
@@ -40,9 +46,16 @@ const App = () => {
                 <Route path ="/User/home" element = {<Home/> } />
                 <Route path ="/User/Companies" element = {<Companies/> } />
                 <Route path ="/User/Jobs" element = {<Jobs/> } />
-                <Route path ="/User/Apply" element = {<Apply/> } />
+                <Route path ="/User/Applications" element = {<MyApplications/> } />
+                <Route path ="/User/Interview" element = {<Interviews/> } />
+                <Route path ="/User/JobHistory" element = {<Job_history/> } />
+                <Route path ="/User/Notifications" element = {<UserNotifications />} />
+
+
                 <Route path = "/User/Myprofile"element = {<Myprofile/>} />
                 <Route path = "/User/Myprofile/Update" element = {<UpdateProfile/> } />
+                <Route path = "/User/Myprofile/UpdateSkills" element = {<UpdateSkills/>} />
+
                 <Route path ="/dummy" element = {<AddCompany/>} />
 
                 <Route path ="/CompanyLogin" element = {<CompanyLogin/>} />

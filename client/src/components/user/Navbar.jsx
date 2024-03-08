@@ -25,7 +25,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto" style={{ fontSize: '20px' }}> {/* Adjust font size */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/User/Companies" activeStyle={activeStyle}>
                 Companies
@@ -34,6 +34,26 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink className="nav-link" to="/User/Jobs" activeStyle={activeStyle}>
                 Jobs
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/User/Applications" activeStyle={activeStyle}>
+                My Applications 
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/User/Interview" activeStyle={activeStyle}>
+                Interviews
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/User/Notifications" activeStyle={activeStyle}>
+                Notifications
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/User/JobHistory" activeStyle={activeStyle}>
+                My Job History
               </NavLink>
             </li>
             <li className="nav-item">

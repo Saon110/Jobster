@@ -122,5 +122,18 @@ const postApply = async (user_id, job_id) => {
  // Replace with actual user and job IDs
 
 
+ const getAllSkill = async () => 
+ {
+  try {
+    const response = await db.query ("SELECT * FROM skill");
+    return response ;
+    
+  } catch (error) {
+      console.log (error);
+    
+  }
+ }
 
-module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName,postApply};
+
+
+module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName,postApply,getAllSkill};
