@@ -1,24 +1,32 @@
 // JobDetails.js
 import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import CompanyFinder from '../../apis/CompanyFinder';
 // import CompanyList from './CompanyList';
 
 const JobList = () => {
-  const {id } = useParams();
+  // const {id } = useParams();
   console.log ("hello ");
-  console.log (id);
+  // console.log (id);
   const [jobs, setJobs] = useState([]);
-  const [Name,setName] =useState ([]);
+  //const [Name,setName] =useState ([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         
-        console.log (id);
+        // console.log (id);
+        const authToken = localStorage.token;
+        console.log(authToken);
         
-        const response = await CompanyFinder.get(`/Employer/${id}/jobs`);
+        const response = await CompanyFinder.get(`/Employer/jobs`, {
+          headers: {
+            authToken: `${authToken}`,
+          },
+        });
+
+        console.log (response.data.data);
         setJobs(response.data.data.jobs);
       } catch (error) {
         console.error('Error fetching job details:', error);
@@ -26,26 +34,32 @@ const JobList = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, []);
 
-  useEffect (()=> {
-    const fetchData2 = async () =>{
-      try {
-        const response = await CompanyFinder.get (`/Company/${id}`);
-        setName(response.data.data.company.name);
-        console.log(response.data.data.company.name);
+  // useEffect (()=> {
+  //   const fetchData2 = async () =>{
+  //     try {
+  //       const authToken = localStorage.token;
+  //       console.log(authToken);
+  //       const response = await CompanyFinder.get (`/Company`, {
+  //         headers: {
+  //           authToken: `${localStorage.token}`,
+  //         },
+  //       });
+  //       setName(response.data.data.company.name);
+  //       console.log(response.data.data.company.name);
         
-      } catch (error) {
+  //     } catch (error) {
         
-      }
+  //     }
      
-    };
-    fetchData2();
-  },[id])
+  //   };
+  //   fetchData2();
+  // },[])
 
   return (
     <div>
-      <h1>{Name}</h1>
+      <h1>Company</h1>
       <table className="table table-hover table-dark">
         <thead>
           <tr className="bg-primary">
