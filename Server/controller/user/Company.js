@@ -135,5 +135,27 @@ const getJobsBySkillForCompany = async (companyId, skillName) => {
 };
 
 
+// get jobs by salary range for a company
+const getJobsBySalaryRangeForCompany = async (companyId, minSalary, maxSalary) => {
+    try {
+        const query = `
+            SELECT J.*, 
+                   J.name AS job_name,
+                   J.description AS job_description,
+                   J.salary AS job_salary,
+                   C.name AS company_name
+            FROM jobs J
+            JOIN company C ON J.company_id = C.company_id
+            WHERE J.company_id = $1
+              AND J.salary BETWEEN $2 AND $3;
+        `;
 
-module.exports = { getJobOfCompany, getCompany, getCompanyByName, getCompanyByAddress ,getJobsByNameForCompany,getJobsBySkillForCompany};
+        const results = await db.query(query, [companyId, minSalary, maxSalary]);
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+module.exports = { getJobOfCompany, getCompany, getCompanyByName, getCompanyByAddress ,getJobsByNameForCompany,getJobsBySkillForCompany,getJobsBySalaryRangeForCompany};

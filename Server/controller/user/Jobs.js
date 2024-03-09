@@ -135,5 +135,28 @@ const postApply = async (user_id, job_id) => {
  }
 
 
+ //get salary by range 
 
-module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName,postApply,getAllSkill};
+const getJobsSalaryRange = async ( minSalary, maxSalary) => {
+  try {
+    const query = `
+      SELECT J.*, 
+             J.name as name,
+             J.description as description,
+             J.salary as salary,
+             (select name from company where company_id = J.company_id) as company_name
+      FROM jobs J
+      WHERE J.salary BETWEEN $1 AND $2;
+    `;
+
+    const results = await db.query(query, [ minSalary, maxSalary]);
+    console.log (results.rows);
+    return results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+module.exports = {getAllJob,getSkillsofJob,getJobByName,getJobsBySkillName,getJobsByCompanyName,postApply,getAllSkill,getJobsSalaryRange};
