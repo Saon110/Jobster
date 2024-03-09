@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getCompany, getCompanyByAddress ,getCompanyByName} = require('../../controller/user/Company');
+const { getCompany, getCompanyByAddress ,getCompanyByName, getJobsBySalaryRangeForCompany} = require('../../controller/user/Company');
 const { getJobOfCompany , getJobsByNameForCompany,getJobsBySkillForCompany } = require('../../controller/user/Company');
 
 
@@ -42,6 +42,28 @@ router.get('/:id/jobs', async (req, res) => {
     }
 
 });
+
+router.get ('/:id/jobs/SearchBySalary', async (req,res) => {
+  try {
+      
+    const results = await getJobsBySalaryRangeForCompany(req.params.id,req.headers.minsalary,req.headers.maxsalary);//
+    console.log("hello ");
+    console.log(results.rows);
+    console.log("hi");
+    res.status(200).json({
+        status: "success",
+        data: {
+            jobs: results.rows
+        }
+
+    });
+
+} catch (error) {
+    console.log(error);
+
+}
+
+}); 
 
 
 router.get('/:id/jobs/Search', async (req, res) => {

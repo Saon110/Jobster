@@ -2,7 +2,7 @@ const router = require ('express').Router();
 
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const {getAllJob,getSkillsofJob,getJobByName,getJobsByCompanyName,getJobsBySkillName, postApply, getAllSkill} = require ('../../controller/user/Jobs');
+const {getAllJob,getSkillsofJob,getJobByName,getJobsByCompanyName,getJobsBySkillName, postApply, getAllSkill, getJobsSalaryRange} = require ('../../controller/user/Jobs');
 const { authenticateToken } = require('../../middlewares/authorization');
 
 
@@ -26,7 +26,25 @@ router.get ('/',async(req,res)=>{
     }
 })
 
+router.get ('/SearchBySalary', async (req,res) => {
+  try {
+    console.log (req.headers.minsalary);
+    console.log (req.headers.maxsalary);
+    const results = await getJobsSalaryRange(req.headers.minsalary,req.headers.maxsalary);
+    console.log (results.rows);
+    res.status(200).json({
+        status:"200" , 
+        data : {
+            jobs : results.rows 
+        }
+    });
 
+    
+  } catch (error) {
+    console.log (error);
+  }
+
+}); 
 
 
 router.get('/Search', async (req, res) => {
