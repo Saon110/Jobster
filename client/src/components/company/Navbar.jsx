@@ -1,39 +1,67 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to={`/Employer/profile`} style={{ color: '#ff6347' }}>Profile</Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+  const activeStyle = {
+    color: '#fff', // Change the active link text color
+    fontWeight: 'bold',
+  };
 
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li className="nav-item active">
-                        <Link className="nav-link" to={`/Employer/jobs`} style={{ color: '#008000' }}>Jobs <span className="sr-only">(current)</span></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={`/Employer/employees`} style={{ color: '#0000ff' }}>Employees</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={`/Employer/applications`} tabIndex="-1" aria-disabled="true" style={{ color: '#800080' }}>Applications</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={`/Employer/interviews`} style={{ color: '#ffa500' }}>Pending Interviews</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={`/Employer/notifications`} style={{ color: '#ff69b4' }}>Notifications</Link>
-                    </li>
-                </ul>
-                {/* <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit" style={{ color: '#fff', backgroundColor: '#ff6347', borderColor: '#ff6347' }}>Search</button>
-                </form> */}
-            </div>
-        </nav>
-    );
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#2c3e50', fontSize: '24px', padding: '30px 0', width: '100%' }}>
+      <div className="container">
+        <NavLink className="navbar-brand" to="/Employer/Home" activeStyle={activeStyle}>
+          <span style={{ color: '#fff', fontSize: '30px', fontWeight: 'bold' }}>Jobster</span>
+        </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto" style={{ fontSize: '20px' }}> {/* Adjust font size */}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/jobs" activeStyle={activeStyle}>
+                Jobs
+              </NavLink>
+            </li>
+            
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/employees" activeStyle={activeStyle}>
+                Employees
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/applications" activeStyle={activeStyle}>
+                Applications
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/interviews" activeStyle={activeStyle}>
+                Pending Interviews
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/notifications" activeStyle={activeStyle}>
+                Notifications
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/Employer/Profile" activeStyle={activeStyle}>
+                Profile
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

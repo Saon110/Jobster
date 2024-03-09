@@ -1,10 +1,15 @@
 import React from 'react'
 import HomePage from '../../components/company/Home'
+import Footer from '../../components/Footer'
 
 const Home = () => {
   return (
     <div>
-        <HomePage/>
+      <div className='container'>
+      <HomePage/>
+      </div>
+        
+        <Footer/>
     </div>
   )
 }
