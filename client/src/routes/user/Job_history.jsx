@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/user/Navbar'
 import JobHistoryPage from '../../components/user/JobHistoryPage'
+import Footer from '../../components/Footer'
 
 const Job_history = () => {
   return (
@@ -9,6 +10,7 @@ const Job_history = () => {
         <div className='container'>
             <JobHistoryPage/>
         </div>
+        <Footer/>
     </div>
   )
 }
