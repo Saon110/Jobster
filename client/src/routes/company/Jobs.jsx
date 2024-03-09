@@ -3,6 +3,8 @@ import React from 'react'
 import Navbar from '../../components/company/Navbar'
 import JobList from '../../components/company/JobList'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Footer'
+
 
 
 const Jobs = () => {
@@ -13,6 +15,7 @@ const Jobs = () => {
   return (
     <div>
         <Navbar/>
+        <div className='container'>
         <JobList/>
         <h1>
   <Link
@@ -37,7 +40,8 @@ const Jobs = () => {
 
 
 
-
+</div>
+<Footer/>
     </div>
   )
 }
