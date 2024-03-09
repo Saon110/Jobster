@@ -28,6 +28,10 @@ import CompanyHome from './routes/company/Home';
 import Job from './routes/company/Jobs';
 import InterviewList from './routes/company/Interviews';
 import NotificationList from './routes/company/Notifications';
+import CompanyProfile from './routes/company/Profile';
+import CompanyUpdateprofile from './routes/company/ProfileUpdate';
+import CompnayJobDetails from './routes/company/JobDetails';
+import JobUpdate from './routes/company/UpdateJob';
 
 
 
@@ -67,6 +71,10 @@ const App = () => {
                 <Route path ="/Employer/home" element = {<CompanyHome/>} />
                 <Route path ="/Employer/interviews" element = {<InterviewList/>} />
                 <Route path ="/Employer/notifications" element = {<NotificationList/>} />
+                <Route path ="/Employer/profile" element = {<CompanyProfile/>} />
+                <Route path ="/Employer/profile/update" element = {<CompanyUpdateprofile/>} />
+                <Route path ="/Employer/jobs/:id" element = {<CompnayJobDetails/>} />
+                <Route path ="/Employer/jobs/:id/update" element = {<JobUpdate/>} />
             </Routes>
         </BrowserRouter>
     </div>

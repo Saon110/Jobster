@@ -1,32 +1,21 @@
-// JobDetails.js
 import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import CompanyFinder from '../../apis/CompanyFinder';
-// import CompanyList from './CompanyList';
+import SearchBar from './SearchBar';
 
 const JobList = () => {
-  // const {id } = useParams();
-  console.log ("hello ");
-  // console.log (id);
   const [jobs, setJobs] = useState([]);
-  //const [Name,setName] =useState ([]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
-        // console.log (id);
         const authToken = localStorage.token;
-        console.log(authToken);
-        
         const response = await CompanyFinder.get(`/Employer/jobs`, {
           headers: {
             authToken: `${authToken}`,
           },
         });
-
-        console.log (response.data.data);
         setJobs(response.data.data.jobs);
       } catch (error) {
         console.error('Error fetching job details:', error);
@@ -36,46 +25,81 @@ const JobList = () => {
     fetchData();
   }, []);
 
-  // useEffect (()=> {
-  //   const fetchData2 = async () =>{
-  //     try {
-  //       const authToken = localStorage.token;
-  //       console.log(authToken);
-  //       const response = await CompanyFinder.get (`/Company`, {
-  //         headers: {
-  //           authToken: `${localStorage.token}`,
-  //         },
-  //       });
-  //       setName(response.data.data.company.name);
-  //       console.log(response.data.data.company.name);
-        
-  //     } catch (error) {
-        
-  //     }
-     
-  //   };
-  //   fetchData2();
-  // },[])
+  useEffect(() => {
+    const fetchName = async () => {
+        try {
+            const authToken = localStorage.token;
+            const profileResponse = await CompanyFinder.get("/Employer/profile", {
+                headers: {
+                    authToken: `${authToken}`,
+                },
+            });
+            setName(profileResponse.data.data.profile[0].name);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    fetchName();
+}, []);
+
+
+  const handleSearch = async (selectedOption, searchText) => {
+    if (selectedOption === 'All') {
+      const authToken = localStorage.token;
+      const response = await CompanyFinder.get(`/Employer/jobs`, {
+        headers: {
+          authToken: `${authToken}`,
+        },
+      });
+      setJobs(response.data.data.jobs);
+    } else {
+      try {
+        const authToken = localStorage.token;
+        const response = await CompanyFinder.get(`/Employer/jobs/Search`, {
+          headers: {
+            type: `${selectedOption}`,
+            value: `${searchText}`,
+            authToken: `${authToken}`,
+          },
+        });
+        setJobs(response.data.data.jobs);
+      } catch (error) {
+        console.error('Error fetching job details:', error);
+      }
+    }
+  };
 
   return (
     <div>
-      <h1>Company</h1>
+      <h1>{name}</h1>
+      <SearchBar
+        options={[
+          { value: 'All', label: 'All' },
+          { value: 'Name', label: 'By Name' },
+          { value: 'Salary Range', label: 'By Salary Range' },
+        ]}
+        onSearch={handleSearch}
+      />
       <table className="table table-hover table-dark">
         <thead>
           <tr className="bg-primary">
             <th scope="col">Job Name</th>
-            <th scope="col">Salary</th>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
+            <th scope="col">Details</th>
           </tr>
         </thead>
         <tbody>
           {jobs.map((job, index) => (
             <tr key={index}>
               <td>{job.name}</td>
-              <td>{job.salary}</td>
               <td>{job.description}</td>
-              <td>{job.status}</td>
+              <td>{job.status === 1 ? 'Available' : 'Not Available'}</td>
+              <td>
+                <Link to={`/Employer/jobs/${job.job_id}`} className="btn btn-primary">
+                  Details
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

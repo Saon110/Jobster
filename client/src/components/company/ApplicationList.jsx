@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const ApplicationList = () => {
     console.log("hello ");
     const [applications, setApplications] = useState([]);
+    const [name, setName] = useState('');
     const navigate = useNavigate();
     //const [application_id, setApplication_id] = useState([]);
 
@@ -28,6 +29,25 @@ const ApplicationList = () => {
 
         fetchData();
     }, []);
+    
+
+    useEffect(() => {
+        const fetchName = async () => {
+            try {
+                const authToken = localStorage.token;
+                const profileResponse = await CompanyFinder.get("/Employer/profile", {
+                    headers: {
+                        authToken: `${authToken}`,
+                    },
+                });
+                setName(profileResponse.data.data.profile[0].name);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchName();
+    }, []);
+
 
     // const showDetails = (application) => {
     //     // console.log(application);
@@ -38,14 +58,14 @@ const ApplicationList = () => {
 
     return (
         <div>
-    <h1>Company</h1>
+    <h1>{name}</h1>
     <table className="table table-hover table-dark">
         <thead>
             <tr className="bg-primary">
                 <th scope="col">Apply Date</th>
                 <th scope="col">Status</th>
-                <th scope="col">User Id</th>
-                <th scope="col">Job Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Applied Job</th>
                 <th scope="col">Details</th> 
             </tr>
         </thead>
@@ -54,8 +74,8 @@ const ApplicationList = () => {
                 <tr key={index}>
                     <td>{application.apply_date}</td>
                     <td>{application.status}</td>
-                    <td>{application.user_id}</td>
-                    <td>{application.job_id}</td>
+                    <td>{application.username}</td>
+                    <td>{application.job_name}</td>
                     <td>
                         <button 
                             className="btn btn-primary btn-sm" 
