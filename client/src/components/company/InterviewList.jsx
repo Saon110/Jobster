@@ -5,6 +5,7 @@ import CompanyFinder from '../../apis/CompanyFinder';
 const InterviewList = () => {
     const { id } = useParams();
     const [interviews, setInterviews] = useState([]);
+    const [name, setName] = useState('');
 
     useEffect(() => {
         fetchData();
@@ -25,6 +26,24 @@ const InterviewList = () => {
             console.error('Error fetching interview details:', error);
         }
     };
+
+    useEffect(() => {
+        const fetchName = async () => {
+            try {
+                const authToken = localStorage.token;
+                const profileResponse = await CompanyFinder.get("/Employer/profile", {
+                    headers: {
+                        authToken: `${authToken}`,
+                    },
+                });
+                setName(profileResponse.data.data.profile[0].name);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchName();
+    }, []);
+
 
     const handleAccept = async (interviewId) => {
         try {
@@ -66,7 +85,7 @@ const InterviewList = () => {
 
     return (
         <div>
-            <h1>Company</h1>
+            <h1>{name}</h1>
             <table className="table table-hover table-dark">
                 <thead>
                     <tr className="bg-primary">

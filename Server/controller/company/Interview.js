@@ -7,7 +7,7 @@ const getInterviews = async (obj, company_id) => {
 
     try{
         const query = `
-        SELECT * FROM get_upcoming_interviews($1);`;
+        SELECT * FROM get_pending_interviews($1);`;
         const results = await db.query(query, [company_id]);
         console.log(results);
         return results;

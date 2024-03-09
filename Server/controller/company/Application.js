@@ -6,10 +6,20 @@ const db = require('../../db/index');
 const getApplications = async (obj, company_id) => {
     try {
         const query = `
-        SELECT a.*
-        FROM application a
-        JOIN jobs j ON a.job_id = j.job_id
-        WHERE j.company_id = $1 and a.status = 'Pending';
+        SELECT
+    a.*,
+    u.name AS username,
+    j.name AS job_name
+FROM
+    application a
+JOIN
+    jobs j ON a.job_id = j.job_id
+JOIN
+    users u ON a.user_id = u.user_id
+WHERE
+    j.company_id = $1
+    AND a.status = 'Pending';
+
         `;
         const results = await db.query(query, [company_id]);
         console.log(results);
@@ -25,7 +35,20 @@ const getApplications = async (obj, company_id) => {
 const getJobApplications = async (obj, company_id) => {
     try {
         const query = `
-        SELECT * FROM application WHERE job_id = $1 AND company_id = $2;`;
+        SELECT
+    a.*,
+    u.name AS username,
+    j.name AS job_name
+FROM
+    application a
+JOIN
+    jobs j ON a.job_id = j.job_id
+JOIN
+    users u ON a.user_id = u.user_id
+WHERE
+    a.job_id = $1
+    AND j.company_id = $2;
+`;
         const results = await db.query(query, [obj, company_id]);
         console.log(results);
         return results;
@@ -115,12 +138,12 @@ const rejectApplication = async (obj, company_id) => {
 
 // check eligibility of a job of a company
 
-const checkEligible = async (application_id,min_gpa) => {
+const checkEligible = async (application_id, min_gpa) => {
     try {
         console.log('inside checkEligible');
         console.log(application_id);
         console.log(min_gpa);
-        const results = await db.query('SELECT check_eligibility($1, $2) AS is_eligible', [application_id,min_gpa]);
+        const results = await db.query('SELECT check_eligibility($1, $2) AS is_eligible', [application_id, min_gpa]);
         console.log(results);
         console.log(results.rows[0].is_eligible);
         return results.rows[0].is_eligible;
