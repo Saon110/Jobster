@@ -227,3 +227,42 @@ BEGIN
         j.company_id = id;
 END;
 $$ LANGUAGE plpgsql;
+
+--8 get company informations
+
+CREATE OR REPLACE FUNCTION get_company_info(company_id_param INT)
+RETURNS TABLE (
+    company_id INT,
+    name VARCHAR(100),
+    address VARCHAR(1000),
+    website VARCHAR(255),
+    logo BYTEA,
+    review FLOAT,
+    email VARCHAR(50),
+    password VARCHAR(255),
+    total_jobs INT,
+    total_employees INT,
+    available_jobs INT
+) AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT c.company_id,
+           c.name,
+           c.address,
+           c.website,
+           c.logo,
+           c.review,
+           c.email,
+           c.password,
+           COUNT(DISTINCT j.job_id)::INT AS total_jobs,
+           COUNT(DISTINCT e.employee_id)::INT AS total_employees,
+           COUNT(DISTINCT CASE WHEN j.status = 1 THEN j.job_id END)::INT AS available_jobs
+    FROM company c
+    LEFT JOIN jobs j ON c.company_id = j.company_id
+    LEFT JOIN employee e ON j.job_id = e.job_id
+    WHERE c.company_id = company_id_param
+    GROUP BY c.company_id;
+END;
+$$
+LANGUAGE 'plpgsql';
