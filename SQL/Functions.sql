@@ -228,9 +228,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--8 get company informations
 
-
---- 8 get company info
 CREATE OR REPLACE FUNCTION get_company_info(company_id_param INT)
 RETURNS TABLE (
     company_id INT,
