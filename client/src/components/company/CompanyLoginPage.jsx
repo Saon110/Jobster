@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CompanyFinder from "../../apis/CompanyFinder";
-import { useNavigate} from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import "../../css/login.css"; // Add a CSS file for styling
 
 const CompanyLoginPage = () => {
@@ -127,6 +127,9 @@ const CompanyLoginPage = () => {
         <div className="container">
             <div className="row full-height justify-content-center">
                 <div className="col-12 text-center align-self-center py-5">
+                <Link to="/" className="employer-link mb-4 text-left" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>
+              For Users
+            </Link>
                     <div className="section pb-5 pt-5 pt-sm-2 text-center">
                         <h6 className="mb-0 pb-3">
                             <span>Log In </span>

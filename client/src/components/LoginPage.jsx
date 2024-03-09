@@ -126,10 +126,18 @@ const LoginPage = () => {
   return (
     <div className="section">
       <div className="container">
-        <div className="row full-height justify-content-center">
+      
+      <div className="row full-height justify-content-center align-items-center">
+          
           <div className="col-12 text-center align-self-center py-5">
+            <Link to="/CompanyLogin" className="employer-link mb-4 text-left" style={{ fontSize: '1.5rem', marginBottom: '20px' }}>
+              For Employers
+            </Link>
             <div className="section pb-5 pt-5 pt-sm-2 text-center">
+          
               <h6 className="mb-0 pb-3">
+             
+
                 <span>Log In </span>
                 <span>Sign Up</span>
               </h6>
@@ -145,7 +153,9 @@ const LoginPage = () => {
                   <div className="card-front">
                     <div className="center-wrap">
                       <div className="section text-center">
-                        <h4 className="mb-4 pb-3">Log In</h4>
+                        <h4 className="mb-4 pb-3">Log In
+                        
+            </h4>
                         <div className="form-group">
                           <input
                             type="email"
@@ -231,19 +241,19 @@ const LoginPage = () => {
                           />
                           <i className="input-icon uil uil-at"></i>
                         </div>
-                                             <div className="form-group mt-2">
-                          <input
-                            type="date"
-                            name="birthdate"
-                            className="form-style"
-                            placeholder="Your Birthdate"
-                            id="birthdate"
-                            autoComplete="off"
-                            value={signupBirthdate}
-                            onChange={handleSignupBirthdateChange}
-                          />
-                          <i className="input-icon uil uil-calendar"></i>
-                        </div>
+                        <div className="form-group mt-2">
+                        <input
+                           type="date"
+                          name="birthdate"
+                          className="form-style"
+                          placeholder={signupBirthdate ? "Birthdate" : "Your Birthdate"}
+                          id="birthdate"
+                          autoComplete="off"
+                          value={signupBirthdate}
+                          onChange={handleSignupBirthdateChange}
+                        />
+                        <i className="input-icon uil uil-calendar"></i>
+                      </div>
 
 
                         <div className="form-group mt-2">

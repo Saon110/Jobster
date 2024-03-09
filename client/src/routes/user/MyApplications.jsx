@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/user/Navbar'
 import ApplicationPage from '../../components/user/ApplicationPage'
+import Footer from '../../components/Footer'
 
 const Applications = () => {
   return (
@@ -11,6 +12,7 @@ const Applications = () => {
       
 
         </div>
+        <Footer/>
         
         
         </div>

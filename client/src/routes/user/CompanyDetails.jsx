@@ -5,6 +5,7 @@ import CompanyList from '../../components/user/CompanyList' ;
 import JobDetails from '../../components/user/JobDetailsOfEachCompany';
 import Navbar from '../../components/user/Navbar';
 import SearchBar from '../../components/user/SearchBar';
+import Footer from '../../components/Footer';
 const CompanyDetails = () => {
   return (
        <div >
@@ -14,6 +15,7 @@ const CompanyDetails = () => {
          <div className='container'>
         <JobDetails/>
         </div>
+        <Footer/>
 
 
        </div>

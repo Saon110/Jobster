@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/user/Navbar'
 import UserNotificationPage from '../../components/user/UserNotificationPage'
+import Footer from '../../components/Footer'
 
 const UserNotifications = () => {
   return (
@@ -10,6 +11,7 @@ const UserNotifications = () => {
 
             <UserNotificationPage/>
         </div>
+        <Footer/>
     </div>
   )
 }
