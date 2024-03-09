@@ -73,11 +73,29 @@ const JobDetailsOfEachCompany = () => {
     setIsOpen(false);
   };
 
-  const handleSearch = async (selectedOption, searchText) => {
+  const handleSearch = async (selectedOption, searchText,minSalary,maxSalary) => {
     console.log(selectedOption + " " + searchText);
 
     if (selectedOption === 'All') {
       setJobs(originalList);
+    } 
+    else if (selectedOption === "Salary")
+    {
+      try {
+        const response = await CompanyFinder.get(`/User/Company/${companyId}/Jobs/SearchBySalary`, {
+          headers: {
+            minSalary: minSalary, // Include minSalary in the headers
+            maxSalary: maxSalary, // Include maxSalary in the headers
+          },
+        });
+
+        setJobs(response.data.data.jobs);
+
+        
+      } catch (error) {
+        console.log (error);
+        
+      }
     } else {
       try {
         console.log("dlskfaj;" );
@@ -117,6 +135,8 @@ const JobDetailsOfEachCompany = () => {
                   { value: 'All', label: 'All' },
                   { value: 'Name', label: 'By Name' },
                   { value: 'Skill', label: 'By Skill' },
+                  { value : 'Salary' , label: 'By Salary Range'}
+
           // Add more options as needed
         ]} onSearch={handleSearch} />
 
