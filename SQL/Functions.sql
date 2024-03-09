@@ -87,7 +87,7 @@ $$ LANGUAGE plpgsql;
 --		
 				
 ---4 get interview 	// upcoming inetrviews
-CREATE OR REPLACE FUNCTION get_upcoming_interviews(company_id_input INT)
+CREATE OR REPLACE FUNCTION get_pending_interviews(company_id_input INT)
 RETURNS TABLE (
     interview_id INT,
     interview_time DATE,
@@ -111,7 +111,7 @@ BEGIN
         jobs j ON a.job_id = j.job_id
     WHERE 
         j.company_id = company_id_input
-        AND i.time > CURRENT_DATE
+        AND i.status = 'Pending'
 		ORDER BY interview_time;
 END;
 $$ LANGUAGE plpgsql;			
@@ -128,5 +128,98 @@ CREATE OR REPLACE FUNCTION insert_job(
 BEGIN
     INSERT INTO jobs (name, salary, description, status, company_id)
     VALUES (p_name, p_salary, p_description, p_status, p_company_id);
+END;
+$$ LANGUAGE plpgsql;
+
+
+--6 //get employees by name
+
+CREATE OR REPLACE FUNCTION get_employees_by_name(input_name_prefix VARCHAR, input_company_id INT)
+RETURNS TABLE (
+    employee_id INT,
+    name VARCHAR(100),
+    salary NUMERIC,
+    birth_date DATE,
+    profile_picture BYTEA,
+    contact_no VARCHAR(50),
+    email VARCHAR(50),
+    resume BYTEA,
+    address VARCHAR(1000),
+    job_name VARCHAR(100),
+    years_of_service NUMERIC
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        e.employee_id,
+        u.name,
+        j.salary,
+        u.birth_date,
+        u.profile_picture,
+        u.contact_no,
+        u.email,
+        u.resume,
+        u.address,
+        job.name AS job_name,
+        EXTRACT(YEAR FROM age(current_date, e.hire_date)) AS years_of_service
+    FROM
+        employee e
+    JOIN
+        users u ON e.user_id = u.user_id
+    JOIN
+        jobs j ON e.job_id = j.job_id
+    JOIN
+        jobs job ON e.job_id = job.job_id
+    WHERE
+        LOWER(u.name) LIKE LOWER(input_name_prefix) || '%' AND
+        j.company_id = input_company_id;
+END;
+$$ LANGUAGE plpgsql;
+
+--7 get employees by salary range
+
+CREATE OR REPLACE FUNCTION get_employees_by_salary(salary_range VARCHAR, id INT)
+RETURNS TABLE (
+    employee_id INT,
+    name VARCHAR(100),
+    salary NUMERIC,
+    birth_date DATE,
+    profile_picture BYTEA,
+    contact_no VARCHAR(50),
+    email VARCHAR(50),
+    resume BYTEA,
+    address VARCHAR(1000),
+    job_name VARCHAR(100),
+    years_of_service NUMERIC
+) AS $$
+DECLARE
+    low_salary NUMERIC;
+    high_salary NUMERIC;
+BEGIN
+    low_salary := CAST(SPLIT_PART(salary_range, '-', 1) AS NUMERIC);
+    high_salary := CAST(SPLIT_PART(salary_range, '-', 2) AS NUMERIC);
+
+    RETURN QUERY
+    SELECT
+        e.employee_id,
+        u.name,
+        j.salary,
+        u.birth_date,
+        u.profile_picture,
+        u.contact_no,
+        u.email,
+        u.resume,
+        u.address,
+        j.name AS job_name,
+        EXTRACT(YEAR FROM age(current_date, e.hire_date)) AS years_of_service
+    FROM
+        employee e
+    JOIN
+        users u ON e.user_id = u.user_id
+    JOIN
+        jobs j ON e.job_id = j.job_id
+    WHERE
+        j.salary BETWEEN low_salary AND high_salary AND
+        j.company_id = id;
 END;
 $$ LANGUAGE plpgsql;
