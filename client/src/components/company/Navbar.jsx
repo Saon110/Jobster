@@ -21,16 +21,16 @@ const Navbar = () => {
                         <Link className="nav-link" to={`/Employer/applications`} tabIndex="-1" aria-disabled="true" style={{ color: '#800080' }}>Applications</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to={`/Employer/interviews`} style={{ color: '#ffa500' }}>Upcoming Interviews</Link>
+                        <Link className="nav-link" to={`/Employer/interviews`} style={{ color: '#ffa500' }}>Pending Interviews</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to={`/Employer/notifications`} style={{ color: '#ff69b4' }}>Notifications</Link>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
+                {/* <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" />
                     <button className="btn btn-outline-success my-2 my-sm-0" type="submit" style={{ color: '#fff', backgroundColor: '#ff6347', borderColor: '#ff6347' }}>Search</button>
-                </form>
+                </form> */}
             </div>
         </nav>
     );

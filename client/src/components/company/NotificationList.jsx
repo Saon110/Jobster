@@ -5,7 +5,7 @@ import CompanyFinder from "../../apis/CompanyFinder";
 const NotificationList = () => {
     const { id } = useParams();
     const [notifications, setNotifications] = useState([]);
-
+    const [name, setName] = useState("");
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,6 +25,24 @@ const NotificationList = () => {
 
         fetchData();
     }, [id]);
+
+    useEffect(() => {
+        const fetchName = async () => {
+            try {
+                const authToken = localStorage.token;
+                const profileResponse = await CompanyFinder.get("/Employer/profile", {
+                    headers: {
+                        authToken: `${authToken}`,
+                    },
+                });
+                setName(profileResponse.data.data.profile[0].name);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchName();
+    }, []);
+
 
     const markAsRead = async (notificationId) => {
         try {
@@ -50,7 +68,7 @@ const NotificationList = () => {
 
     return (
         <div>
-            <h1>Notifications</h1>
+            <h1>{name}</h1>
             <table className="table table-hover table-dark">
                 <thead>
                     <tr className="bg-primary">

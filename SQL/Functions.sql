@@ -86,6 +86,7 @@ $$ LANGUAGE plpgsql;
 
 --		
 				
+---4 get interview 	// upcoming inetrviews
 CREATE OR REPLACE FUNCTION get_pending_interviews(company_id_input INT)
 RETURNS TABLE (
     interview_id INT,
@@ -132,6 +133,7 @@ $$ LANGUAGE plpgsql;
 
 
 
+--6 //get employees by name
 
 
 CREATE OR REPLACE FUNCTION get_employees_by_name(input_name_prefix VARCHAR, input_company_id INT)
@@ -177,11 +179,8 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+--7 get employees by salary range
 
-
-
-
---- --7 get employees by salary range
 
 CREATE OR REPLACE FUNCTION get_employees_by_salary(salary_range VARCHAR, id INT)
 RETURNS TABLE (
