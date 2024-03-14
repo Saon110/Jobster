@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CompanyFinder from '../../apis/CompanyFinder';
 import { useNavigate } from 'react-router-dom';
+import '../../css/all.css'; // Import CSS for styling
 
 const ApplicationList = () => {
     const [applications, setApplications] = useState([]);
@@ -44,37 +44,22 @@ const ApplicationList = () => {
     }, []);
 
     return (
-        <div style={{ backgroundImage: `url('../../public/EmployeeLogin.jpg')`, backgroundSize: 'cover', minHeight: '100vh' }}>
+        <div className="grid-container">
             <h1>{name}</h1>
-            <table className="table table-hover table-dark">
-                <thead>
-                    <tr className="bg-primary">
-                        <th scope="col">Apply Date</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Applied Job</th>
-                        <th scope="col">Details</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    {applications.map((application, index) => (
-                        <tr key={index}>
-                            <td>{application.apply_date}</td>
-                            <td>{application.status}</td>
-                            <td>{application.username}</td>
-                            <td>{application.job_name}</td>
-                            <td>
-                                <button 
-                                    className="btn btn-primary btn-sm" 
-                                    onClick={() => navigate(`/Employer/applications/${application.application_id}`)}
-                                >
-                                    Details
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            {applications.map((application, index) => (
+                <div key={index} className="grid-item">
+                    <p><strong>Apply Date:</strong> {application.apply_date}</p>
+                    <p><strong>Status:</strong> {application.status}</p>
+                    <p><strong>Name:</strong> {application.username}</p>
+                    <p><strong>Applied Job:</strong> {application.job_name}</p>
+                    <button 
+                        className="btn btn-primary btn-sm" 
+                        onClick={() => navigate(`/Employer/applications/${application.application_id}`)}
+                    >
+                        Details
+                    </button>
+                </div>
+            ))}
         </div>
     );
 };

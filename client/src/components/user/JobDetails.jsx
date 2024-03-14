@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import CompanyFinder from '../../apis/CompanyFinder';
 import Modal from 'react-modal';
-import '../../css/jobdetails.css';
+import '../../css/all.css';
 import SearchBar from './SearchBar'; // Import the SearchBar component
 import { ToastContainer, toast } from 'react-toastify'; // Import the ToastContainer and toast from react-toastify
 import 'react-toastify/dist/ReactToastify.css';

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CompanyFinder from '../../apis/CompanyFinder';
+import '../../css/all.css'; // Import CSS for styling
 
 const InterviewList = () => {
     const { id } = useParams();
@@ -84,35 +85,20 @@ const InterviewList = () => {
     };
 
     return (
-        <div>
+        <div className="grid-container">
             <h1>{name}</h1>
-            <table className="table table-hover table-dark">
-                <thead>
-                    <tr className="bg-primary">
-                        <th scope="col">Interview ID</th>
-                        <th scope="col">Interview Time</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Interview Location</th>
-                        <th scope="col">Actions</th> {/* Added column for actions */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {interviews.map((interview) => {
-                        return (
-                            <tr key={interview.interview_id}>
-                                <td>{interview.interview_id}</td>
-                                <td>{interview.interview_time}</td>
-                                <td>{interview.status}</td>
-                                <td>{interview.location}</td>
-                                <td>
-                                    <button className="btn btn-success" onClick={() => handleAccept(interview.interview_id)}>Accept</button>
-                                    <button className="btn btn-danger" onClick={() => handleReject(interview.interview_id)}>Reject</button>
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+            {interviews.map((interview) => (
+                <div key={interview.interview_id} className="grid-item">
+                    <p><strong>Interview ID:</strong> {interview.interview_id}</p>
+                    <p><strong>Interview Time:</strong> {interview.interview_time}</p>
+                    <p><strong>Status:</strong> {interview.status}</p>
+                    <p><strong>Interview Location:</strong> {interview.location}</p>
+                    <div className="actions">
+                        <button className="btn btn-success" onClick={() => handleAccept(interview.interview_id)}>Accept</button>
+                        <button className="btn btn-danger" onClick={() => handleReject(interview.interview_id)}>Reject</button>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };

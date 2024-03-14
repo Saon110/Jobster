@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CompanyFinder from '../../apis/CompanyFinder';
 import SearchBar from './SearchBar';
+import '../../css/all.css'; // Import CSS for styling
 
 const EmployeeList = () => {
     const { id } = useParams();
@@ -41,7 +42,6 @@ const EmployeeList = () => {
         };
         fetchName();
     }, []);
-
 
     const handleTerminateEmployee = async (employeeId) => {
         try {
@@ -95,43 +95,23 @@ const EmployeeList = () => {
                 ]}
                 onSearch={handleSearch}
             />
-            <div>
-                <table className="table table-hover table-dark">
-                    <thead>
-                        <tr className="bg-primary">
-                            <th scope="col">Name</th>
-                            <th scope="col">Salary</th>
-                            <th scope="col">Job Post</th>
-                            <th scope="col">Birth Date</th>
-                            <th scope="col">Contact No</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Resume</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Years of Service</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {employees.map((employee, index) => (
-                            <tr key={index}>
-                                <td>{employee.name}</td>
-                                <td>{employee.salary}</td>
-                                <td>{employee.job_name}</td>
-                                <td>{employee.birth_date}</td>
-                                <td>{employee.contact_no}</td>
-                                <td>{employee.email}</td>
-                                <td>{employee.resume}</td>
-                                <td>{employee.address}</td>
-                                <td>{employee.years_of_service}</td>
-                                <td>
-                                    <button className="btn btn-danger" onClick={() => handleTerminateEmployee(employee.employee_id)}>
-                                        Terminate
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="grid-container">
+                {employees.map((employee, index) => (
+                    <div key={index} className="grid-item">
+                        <p><strong>Name:</strong> {employee.name}</p>
+                        <p><strong>Salary:</strong> {employee.salary}</p>
+                        <p><strong>Job Post:</strong> {employee.job_name}</p>
+                        <p><strong>Birth Date:</strong> {employee.birth_date}</p>
+                        <p><strong>Contact No:</strong> {employee.contact_no}</p>
+                        <p><strong>Email:</strong> {employee.email}</p>
+                        <p><strong>Resume:</strong> {employee.resume}</p>
+                        <p><strong>Address:</strong> {employee.address}</p>
+                        <p><strong>Years of Service:</strong> {employee.years_of_service}</p>
+                        <button className="btn btn-danger" onClick={() => handleTerminateEmployee(employee.employee_id)}>
+                            Terminate
+                        </button>
+                    </div>
+                ))}
             </div>
         </div>
     );

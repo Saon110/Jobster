@@ -1,0 +1,112 @@
+.company-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .smart-box {
+    background-color: rgba(136, 160, 240, 0.8); /* Set the background color with opacity */
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .smart-box h3 a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .smart-box p {
+    margin: 5px 0;
+    color: #080808; /* Set paragraph text color to slightly darker */
+  }
+
+
+  .job-details-box {
+    background-color: rgba(255, 255, 255, 0.4); /* Adjust the opacity value (last parameter) */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Add margin-bottom for spacing between job details */
+  }
+  
+  .job-details-content {
+    margin-bottom: 10px; /* Add margin-bottom for spacing between job details content */
+  }
+  
+  .job-details-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .view-requirements-button,
+  .apply-button {
+    background-color: #3498db; /* Set button background color */
+    color: #fff; /* Set button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .view-requirements-button:hover,
+  .apply-button:hover {
+    background-color: #2980b9; /* Change button background color on hover */
+  }
+  
+
+  .job-list-container {
+    padding: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .job-item {
+    background-color: rgba(0, 0, 0, 0.779); /* Adjust opacity here */
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .job-item h3,
+  .job-item p {
+    color: rgb(19, 169, 29); /* Text color */
+  }
+  
+  .btn-primary {
+    color: white;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    color: white;
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust column width as needed */
+    gap: 20px; /* Adjust gap between grid items */
+}
+
+.grid-item {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Reduced opacity */
+    border-radius: 5px;
+    color: #fff;
+}
+
+.grid-item p {
+    margin: 0;
+}
+
+.grid-item button {
+    margin-top: 10px;
+}
+
+
+

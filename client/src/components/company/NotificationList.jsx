@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CompanyFinder from "../../apis/CompanyFinder";
+import "../../css/all.css"; // Import CSS for styling
 
 const NotificationList = () => {
     const { id } = useParams();
     const [notifications, setNotifications] = useState([]);
     const [name, setName] = useState("");
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -67,36 +69,20 @@ const NotificationList = () => {
     };
 
     return (
-        <div>
+        <div className="grid-container">
             <h1>{name}</h1>
-            <table className="table table-hover table-dark">
-                <thead>
-                    <tr className="bg-primary">
-                        <th scope="col">Notification</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Actions</th> {/* Added column for actions */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {notifications && notifications.map((notification) => {
-                        return (
-                            <tr key={notification.notification_id}>
-                                <td>{notification.content}</td>
-                                <td>{notification.status}</td>
-                                <td>{notification.timestamp}</td>
-                                <td>
-                                    {notification.status === 'Unread' && ( // Show button only if status is Unread
-                                        <button onClick={() => markAsRead(notification.notification_id)}>
-                                            Mark as Read
-                                        </button>
-                                    )}
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+            {notifications && notifications.map((notification) => (
+                <div key={notification.notification_id} className="grid-item">
+                    <p><strong>Notification:</strong> {notification.content}</p>
+                    <p><strong>Status:</strong> {notification.status}</p>
+                    <p><strong>Date:</strong> {notification.timestamp}</p>
+                    {notification.status === 'Unread' && ( // Show button only if status is Unread
+                        <button className="btn-mark-as-read" onClick={() => markAsRead(notification.notification_id)}>
+                            Mark as Read
+                        </button>
+                    )}
+                </div>
+            ))}
         </div>
     );
 };
