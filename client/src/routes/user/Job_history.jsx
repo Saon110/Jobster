@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from '../../components/user/Navbar'
 import JobHistoryPage from '../../components/user/JobHistoryPage'
 import Footer from '../../components/Footer'
-
+import '../../css/other.css'
 const Job_history = () => {
   return (
-    <div>
+    <div className='user-image'>
         <Navbar/>
         <div className='container'>
             <JobHistoryPage/>

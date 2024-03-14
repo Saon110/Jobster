@@ -4,10 +4,11 @@ import Navbar from '../../components/user/Navbar'
 import CompanyList from '../../components/user/CompanyList'
 import SearchBar from '../../components/user/SearchBar'
 import Footer from '../../components/Footer'
+import '../../css/other.css'
 
 const Companies = () => {
   return (
-    <div>
+    <div className='user-image'>
         <Navbar/>
         {/* <SearchBar/> */}
         <div className='container'>

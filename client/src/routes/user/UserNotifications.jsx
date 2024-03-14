@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from '../../components/user/Navbar'
 import UserNotificationPage from '../../components/user/UserNotificationPage'
 import Footer from '../../components/Footer'
-
+import '../../css/other.css'
 const UserNotifications = () => {
   return (
-    <div>
+    <div className='user-image'>
         <Navbar/>
         <div className='container'>
 

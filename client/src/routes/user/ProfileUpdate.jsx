@@ -1,20 +1,21 @@
 import React from 'react'
 import Navbar from '../../components/company/Navbar'
-import InterviewList from '../../components/company/InterviewList'
 import Footer from '../../components/Footer'
+import UpdateProfle from '../../components/user/UpdateProfile'
 import '../../css/other.css'
 
-const Interviews = () => {
+const SkillUpdate = () => {
   return (
-    <div className='site-content'>
+    <div className='user-image'>
         <Navbar/>
+        {/* <SearchBar/> */}
         <div className='container'>
-        <InterviewList /> 
-
+        <UpdateProfle/>
         </div>
         <Footer/>
+        
     </div>
   )
 }
 
-export default Interviews
+export default SkillUpdate
