@@ -4,7 +4,7 @@ import Navbar from '../../components/company/Navbar'
 import JobList from '../../components/company/JobList'
 import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
-
+import '../../css/other.css'
 
 
 const Jobs = () => {
@@ -13,7 +13,7 @@ const Jobs = () => {
 
 
   return (
-    <div>
+    <div className='site-content'>
         <Navbar/>
         <div className='container'>
         <JobList/>

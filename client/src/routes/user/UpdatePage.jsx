@@ -1,6 +1,7 @@
 import React from 'react'
 import CompanyUpdate from '../../components/user/CompanyUpdate'
 
+
 const UpdatePage = () => {
     return (
         <div>

@@ -4,7 +4,7 @@
 CREATE OR REPLACE FUNCTION update_employee_status()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.status = 'accepted' THEN
+    IF NEW.status = 'Accepted' THEN
         -- Check if the user is not already an employee
         IF NOT EXISTS (SELECT 1 FROM employee WHERE user_id = (SELECT user_id FROM application WHERE application_id = NEW.application_id)) THEN
             INSERT INTO employee (user_id, job_id, hire_date, commission_pct)
@@ -91,7 +91,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF NEW.status = 'Accepted' THEN
         INSERT INTO interview (time, status, location, application_id)
-        VALUES (CURRENT_DATE + INTERVAL '7 days', 'Scheduled', (SELECT name || ' office' FROM company WHERE company_id = (SELECT company_id FROM jobs WHERE job_id = NEW.job_id)), NEW.application_id);
+        VALUES (CURRENT_DATE + INTERVAL '7 days', 'Pending', (SELECT name || ' office' FROM company WHERE company_id = (SELECT company_id FROM jobs WHERE job_id = NEW.job_id)), NEW.application_id);
     END IF;
     RETURN NULL;
 END;
@@ -118,7 +118,7 @@ BEGIN
         -- Construct the notification content for accepted applicants
         notification_content := 'Congratulations! Your application has been accepted for an interview scheduled on ' || (CURRENT_DATE + INTERVAL '7 days')::TEXT;
 				 INSERT INTO notification (content, user_id, job_id, notification_type, status)
-    VALUES (notification_content, NEW.user_id, NEW.job_id, 'Interview', 'Unread');
+    VALUES (notification_content, NEW.user_id, NEW.job_id, 'company_to_user', 'Unread');
     ELSEIF NEW.status = 'Rejected' THEN
         -- Construct the notification content for rejected applicants
         notification_content := 'We regret to inform you that your application has been rejected.';

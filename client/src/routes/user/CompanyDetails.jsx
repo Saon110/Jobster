@@ -6,9 +6,10 @@ import JobDetails from '../../components/user/JobDetailsOfEachCompany';
 import Navbar from '../../components/user/Navbar';
 import SearchBar from '../../components/user/SearchBar';
 import Footer from '../../components/Footer';
+import '../../css/other.css'
 const CompanyDetails = () => {
   return (
-       <div >
+       <div className='user-image' >
           
          <Navbar/>
          {/* <SearchBar/> */}

@@ -86,7 +86,7 @@ const ProfileDetails = () => {
                         </div>
                     </div>
                 </div>
-                <button className="update-profile-button" onClick={() => { navigate('/Employer//update') }}>Update Profile</button>
+                <button className="update-profile-button" onClick={() => { navigate('/Employer/profile/update') }}>Update Profile</button>
             </div>
         </div>
     );

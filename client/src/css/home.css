@@ -1,0 +1,18 @@
+.site-content {
+    background-image: url('../../public/EmployerLogin.jpg'); /* Specify the path to your image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to occupy at least the full viewport */
+  }
+  
+  .container {
+    flex: 1; /* Allow the container to grow to fill the remaining space */
+  }
+  
+  footer {
+    margin-top: auto; /* Push the footer to the bottom of the page */
+  }
+  

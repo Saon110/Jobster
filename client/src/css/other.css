@@ -1,0 +1,46 @@
+.site-content {
+    background-image: url('../../public/EmployerLogin.jpg'); /* Specify the path to your image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to occupy at least the full viewport */
+    background-attachment: fixed;
+  }
+  
+  .container {
+    flex: 1; /* Allow the container to grow to fill the remaining space */
+    padding: 20px;
+    
+  }
+  
+/* background.css */
+
+.bg-image {
+  background-image: url('../../public/login.jpg'); /* Specify the path to your image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+
+.user-image {
+  background-image: url('../../public/Userlogin.jpg'); /* Specify the path to your image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+footer {
+  margin-top: auto; /* Push the footer to the bottom of the page */
+}
+

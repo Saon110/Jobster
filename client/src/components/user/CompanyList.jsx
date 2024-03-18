@@ -3,7 +3,7 @@ import { CompanyContext } from '../../context/CompanyContext';
 import CompanyFinder from '../../apis/CompanyFinder';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import '../../css/companylist.css';
+import '../../css/all.css';
 import SearchBar from './SearchBar';
 
 const CompanyList = (props) => {
@@ -46,7 +46,7 @@ const CompanyList = (props) => {
 
   return (
     <div>
-      <h2 style={{ color: '#fff' }}>Company list </h2>
+      <h2 style={{ color: '#000' }}>Company list </h2>
       <SearchBar
         options={[
           { value: 'All', label: 'All' },
